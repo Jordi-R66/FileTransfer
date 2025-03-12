@@ -36,6 +36,7 @@ int listenToConnections(socketParams_t* listeningSocketParams, socketParams_t* r
 
 	socketParams_t remote;
 	remote.fd = connected_fd;
+	remote.isMain = false;
 
 	*remoteConn = remote;
 }
