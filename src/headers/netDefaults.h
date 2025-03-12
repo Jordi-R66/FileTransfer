@@ -9,7 +9,7 @@
 	#define DEFAULT_PORT 4635
 
 	// Type definitions
-	typedef struct sockaddr_in sockaddr_in_t;
+	typedef struct sockaddr_in sockAddr;
 
 	enum ConnType {
 		Sender = 0,
