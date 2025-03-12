@@ -21,7 +21,8 @@
 	typedef enum ConnType ConnType_t;
 
 	struct socketParams {
-		int socket_fd;
+		int fd;
+		bool isMain;
 
 		uint32_t remoteIp;
 		uint32_t localIp;

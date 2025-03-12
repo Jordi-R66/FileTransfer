@@ -14,7 +14,7 @@ int createUnixSocket(socketParams_t* socketParams) {
 			exit(EXIT_FAILURE);
 		}
 
-		socketParams->socket_fd = socket_fd;
+		socketParams->fd = socket_fd;
 	} else if (connType == Receiver) {
 		int socket_fd = socket(DEFAULT_DOMAIN, SOCK_STREAM, 0);
 
@@ -23,7 +23,7 @@ int createUnixSocket(socketParams_t* socketParams) {
 			exit(EXIT_FAILURE);
 		}
 
-		socketParams->socket_fd = socket_fd;
+		socketParams->fd = socket_fd;
 	} else {
 		fprintf(stderr, "Invalid connection type\n");
 		exit(EXIT_FAILURE);
@@ -31,7 +31,7 @@ int createUnixSocket(socketParams_t* socketParams) {
 }
 
 void closeUnixSocket(socketParams_t* socketParams) {
-	close(socketParams->socket_fd);
+	close(socketParams->fd);
 }
 
 #endif

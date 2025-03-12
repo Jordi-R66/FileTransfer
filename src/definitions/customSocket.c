@@ -11,7 +11,7 @@ void createSocket(socketParams_t* socketParams) {
 }
 
 void bindSocket(socketParams_t* socketParams) {
-	int bind_ret_code = bind(socketParams->socket_fd, (const sockAddr*)(&socketParams->socketAddress), socketParams->socketLength);
+	int bind_ret_code = bind(socketParams->fd, (const sockAddr*)(&socketParams->socketAddress), socketParams->socketLength);
 
 	if (bind_ret_code < 0) {
 		fprintf(stderr, "Couldn't bind socket\n");
@@ -20,14 +20,14 @@ void bindSocket(socketParams_t* socketParams) {
 }
 
 int listenToConnections(socketParams_t* listeningSocketParams, socketParams_t* remoteConn) {
-	int ret_listen = listen(listeningSocketParams->socket_fd, 1);
+	int ret_listen = listen(listeningSocketParams->fd, 1);
 
 	if (ret_listen < 0) {
 		fprintf(stderr, "Error happened on listening to incoming connections\n");
 		exit(EXIT_FAILURE);
 	}
 
-	int connected_fd = accept(listeningSocketParams->socket_fd, (sockAddr*)&listeningSocketParams->socketAddress, &listeningSocketParams->socketLength);
+	int connected_fd = accept(listeningSocketParams->fd, (sockAddr*)&listeningSocketParams->socketAddress, &listeningSocketParams->socketLength);
 
 	if (connected_fd < 0) {
 		fprintf(stderr, "Error happened on accepting incoming connections\n");
@@ -35,7 +35,7 @@ int listenToConnections(socketParams_t* listeningSocketParams, socketParams_t* r
 	}
 
 	socketParams_t remote;
-	remote.socket_fd = connected_fd;
+	remote.fd = connected_fd;
 
 	*remoteConn = remote;
 }
