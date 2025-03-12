@@ -9,4 +9,8 @@ void createWinSocket(osSpecific_t* osSpecific) {
 	}
 }
 
+void closeWinSocket(osSpecific_t* osSpecific) {
+	WSACleanup();
+}
+
 #endif

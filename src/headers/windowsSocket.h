@@ -18,5 +18,6 @@
 	typedef WSAData osSpecific_t;
 
 	void createWinSocket(osSpecific_t* osSpecific);
+	void closeWinSocket(osSpecific_t* osSpecific);
 	#endif
 #endif
