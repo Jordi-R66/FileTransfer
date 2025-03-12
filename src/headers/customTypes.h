@@ -3,10 +3,10 @@
 #ifndef CUSTOM_TYPES_HEADER
 #define CUSTOM_TYPES_HEADER
 
-enum SocketType {
+enum ConnType {
 	Sender = 0,
 	Receiver = 1
 };
 
-typedef enum SocketType SocketType_t;
+typedef enum ConnType ConnType_t;
 #endif
