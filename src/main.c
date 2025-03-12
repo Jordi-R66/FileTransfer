@@ -3,6 +3,14 @@
 
 char buffer[BUFFER_SIZE];
 
+size_t getFileSize(FILE* fp) {
+	fseek(fp, 0, SEEK_END);
+	size_t filesize = ftell(fp);
+	fseek(fp, 0, SEEK_SET);
+
+	return filesize;
+}
+
 void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename) {
 	socketParams_t socketParams = generateParams(local, remote, DEFAULT_PORT, Sender);
 	socketParams_t remoteParams;
