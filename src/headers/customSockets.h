@@ -2,47 +2,22 @@
 
 #ifndef CUSTOM_SOCKETS_HEADER
 
-#ifdef winDev
-	#define _WIN32
-	#undef __linux__
-#endif
+	#ifdef __linux__
+		#include "linuxSocket.h"
+	#elif defined(_WIN32)
+		#include "windowsSocket.h"
+	#else
+		#define TargetError
+		#define Error
+		#error "Target OS not supported"
+	#endif
 
-#define CUSTOM_SOCKETS_HEADER
+	#if !defined(Error) && !defined(TargetError)
+		#define CUSTOM_SOCKETS_HEADER
 
-#include "common.h"
+		#include "common.h"
 
-#ifdef __linux__
-	#include <netinet/in.h>
-	#include <sys/socket.h>
-	#include <sys/types.h>
-	#include <arpa/inet.h>
-	#include <unistd.h>
-#elif defined(_WIN32)
-	#include <winsock2.h>
-	#include <ws2tcpip.h>
-	#include <windows.h>
-#else
-	#error "Target OS not supported"
-#endif
+		void createSocket(osSpecific_t* osSpecific);
 
-#ifdef _WIN32
-
-struct WindowsSpecific {
-	WSADATA wsaData;
-}
-
-typedef struct WindowsSpecific osSpecific_t;
-
-void createWinSocket(osSpecific_t* osSpecific);
-
-#else
-
-typedef void osSpecific_t;
-
-void createUnixSocket();
-
-#endif
-
-void createSocket(osSpecific_t* osSpecific);
-
+	#endif
 #endif
