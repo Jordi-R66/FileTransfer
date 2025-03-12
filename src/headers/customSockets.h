@@ -31,5 +31,7 @@
 		 */
 		void bindSocket(socketParams_t* socketParams);
 
+		void closeSocket(socketParams_t* socketParams);
+
 	#endif
 #endif
