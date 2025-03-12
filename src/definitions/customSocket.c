@@ -10,6 +10,15 @@ void createSocket(socketParams_t* socketParams) {
 	#endif
 }
 
+void bindSocket(socketParams_t* socketParams) {
+	int bind_ret_code = bind(socketParams->socket_fd, (const sockAddr*)(&socketParams->socketAddress), sizeof(socketParams->socketAddress));
+
+	if (bind_ret_code < 0) {
+		fprintf(stderr, "Couldn't bind socket\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
 void closeSocket(socketParams_t* socketParams) {
 	#ifdef __linux__
 		closeUnixSocket(socketParams);
