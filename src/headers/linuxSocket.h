@@ -14,5 +14,6 @@
 		typedef void osSpecific_t;
 
 		void createUnixSocket();
+		void closeUnixSocket();
 	#endif
 #endif
