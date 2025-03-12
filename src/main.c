@@ -73,11 +73,13 @@ int main() {
 	uint8_t local[4];
 	uint8_t remote[4];
 
+	string filename = "test.wav";
+
 	for (size_t i=0; i<BUFFER_SIZE; i++) {
 		buffer[i] = 0;
 	}
 
-
+	sender(remote, local, DEFAULT_PORT, &filename);
 
 	return 0;
 }
