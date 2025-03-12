@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef UNIX_SOCKET_HEADER
 	#ifdef __linux__
 		#define UNIX_SOCKET_HEADER
@@ -10,6 +11,8 @@
 		#include <sys/types.h>
 		#include <arpa/inet.h>
 		#include <unistd.h>
+
+		#include "customTypes.h"
 
 		typedef void osSpecific_t;
 
