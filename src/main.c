@@ -3,6 +3,10 @@
 
 int main() {
 	socketParams_t socketParams;
+
+	socketParams.connType = Sender;
+	socketParams.port = DEFAULT_PORT;
+
 	int socket_fd = createSocket(socketParams);
 
 

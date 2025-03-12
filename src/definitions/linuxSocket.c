@@ -7,7 +7,7 @@ int createUnixSocket(socketParams_t socketParams) {
 	ConnType_t connType = socketParams.connType;
 
 	if (connType == Sender) {
-		int socket_fd = socket(AF_INET, SOCK_STREAM, 0);
+		int socket_fd = socket(DEFAULT_DOMAIN, SOCK_STREAM, 0);
 
 		if (socket_fd == -1) {
 			fprintf(stderr, "Sender socket creation failed\n");
@@ -16,7 +16,7 @@ int createUnixSocket(socketParams_t socketParams) {
 
 		return socket_fd;
 	} else if (connType == Receiver) {
-		int socket_fd = socket(AF_INET, SOCK_STREAM, 0);
+		int socket_fd = socket(DEFAULT_DOMAIN, SOCK_STREAM, 0);
 
 		if (socket_fd == -1) {
 			fprintf(stderr, "Receiver socket creation failed\n");

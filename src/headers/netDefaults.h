@@ -3,6 +3,12 @@
 #ifndef NET_DEFAULTS_HEADER
 	#include "common.h"
 
+	// Labels
+
+	#define DEFAULT_DOMAIN AF_INET
+	#define DEFAULT_PORT 4635
+
+	// Type definitions
 	typedef struct sockaddr_in sockaddr_in_t;
 
 	enum ConnType {
