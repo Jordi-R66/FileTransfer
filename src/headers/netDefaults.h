@@ -27,6 +27,7 @@
 		ConnType_t connType;
 
 		sockAddrIn socketAddress;
+		socklen_t socketLength;
 	};
 
 	typedef struct socketParams socketParams_t;
