@@ -35,7 +35,7 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 	}
 
 	FILE* fp = fopen(*filename, "r");
-	size_t filesize = getFileSize(*filename);
+	size_t filesize = getFileSize(fp);
 
 	size_t readBytes = 1;
 
