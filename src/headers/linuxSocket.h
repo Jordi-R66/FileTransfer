@@ -14,9 +14,7 @@
 
 		#include "customTypes.h"
 
-		typedef void osSpecific_t;
-
-		void createUnixSocket();
-		void closeUnixSocket();
+		int createUnixSocket(socketParams_t socketParams);
+		void closeUnixSocket(int socket_fd);
 	#endif
 #endif
