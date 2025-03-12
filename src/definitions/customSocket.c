@@ -2,19 +2,19 @@
 
 #ifdef CUSTOM_SOCKETS_HEADER
 
-int createSocket(socketParams_t socketParams) {
+void createSocket(socketParams_t* socketParams) {
 	#ifdef __linux__
-		return createUnixSocket(socketParams);
+		createUnixSocket(socketParams);
 	#elif defined(_WIN32)
-		return createWinSocket(socketParams);
+		createWinSocket(socketParams);
 	#endif
 }
 
-void closeSocket(int socket_fd) {
+void closeSocket(socketParams_t* socketParams) {
 	#ifdef __linux__
-		closeUnixSocket(socket_fd);
+		closeUnixSocket(socketParams);
 	#elif defined(_WIN32)
-		closeWinSocket(socket_fd);
+		closeWinSocket(socketParams);
 	#endif
 }
 

@@ -2,9 +2,9 @@
 
 #ifdef UNIX_SOCKET_HEADER
 
-int createUnixSocket(socketParams_t socketParams) {
+int createUnixSocket(socketParams_t* socketParams) {
 
-	ConnType_t connType = socketParams.connType;
+	ConnType_t connType = socketParams->connType;
 
 	if (connType == Sender) {
 		int socket_fd = socket(DEFAULT_DOMAIN, SOCK_STREAM, 0);
@@ -14,7 +14,7 @@ int createUnixSocket(socketParams_t socketParams) {
 			exit(EXIT_FAILURE);
 		}
 
-		return socket_fd;
+		socketParams->socket_fd = socket_fd;
 	} else if (connType == Receiver) {
 		int socket_fd = socket(DEFAULT_DOMAIN, SOCK_STREAM, 0);
 
@@ -23,15 +23,15 @@ int createUnixSocket(socketParams_t socketParams) {
 			exit(EXIT_FAILURE);
 		}
 
-		return socket_fd;
+		socketParams->socket_fd = socket_fd;
 	} else {
 		fprintf(stderr, "Invalid connection type\n");
 		exit(EXIT_FAILURE);
 	}
 }
 
-void closeUnixSocket(int socket_fd) {
-	close(socket_fd);
+void closeUnixSocket(socketParams_t* socketParams) {
+	close(socketParams->socket_fd);
 }
 
 #endif

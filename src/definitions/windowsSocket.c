@@ -2,7 +2,7 @@
 
 #ifdef WINDOWS_SOCKETS_HEADER
 
-int createWinSocket(socketParams_t socketParams) {
+void createWinSocket(socketParams_t* socketParams) {
 	WSADATA wsaData;
 
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
@@ -10,7 +10,7 @@ int createWinSocket(socketParams_t socketParams) {
 		exit(EXIT_FAILURE);
 	}
 
-	ConnType_t connType = socketParams.connType;
+	ConnType_t connType = socketParams->connType;
 
 	if (connType == Sender) {
 		int socket_fd = socket(DEFAULT_DOMAIN, SOCK_STREAM, 0);
@@ -20,7 +20,7 @@ int createWinSocket(socketParams_t socketParams) {
 			exit(EXIT_FAILURE);
 		}
 
-		return socket_fd;
+		socketParams->socket_fd = socket_fd;
 	} else if (connType == Receiver) {
 		int socket_fd = socket(DEFAULT_DOMAIN, SOCK_STREAM, 0);
 
@@ -29,14 +29,14 @@ int createWinSocket(socketParams_t socketParams) {
 			exit(EXIT_FAILURE);
 		}
 
-		return socket_fd;
+		socketParams->socket_fd = socket_fd;
 	} else {
 		fprintf(stderr, "Invalid connection type\n");
 		exit(EXIT_FAILURE);
 	}
 }
 
-void closeWinSocket(int socket_fd) {
+void closeWinSocket(socketParams_t* socketParams) {
 	WSACleanup();
 }
 
