@@ -7,6 +7,8 @@
 	#define DEFAULT_DOMAIN AF_INET
 	#define DEFAULT_PORT 4635
 
+	#define BUFFER_SIZE 1024
+
 	// Type definitions
 	typedef struct sockaddr_in sockAddrIn;
 	typedef struct sockaddr sockAddr;
