@@ -23,7 +23,8 @@
 		 * @param socketParams Parameters for the socket
 		 * @return int File descriptor of the socket
 		 */
-		int createSocket(socketParams_t socketParams);
+		int createSocket(socketParams_t* socketParams);
+		int bindSocket(socketParams_t* socketParams);
 		void closeSocket(int socket_fd);
 	#endif
 #endif

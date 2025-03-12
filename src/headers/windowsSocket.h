@@ -11,7 +11,7 @@
 		#include <ws2tcpip.h>
 		#include <windows.h>
 
-		int createWinSocket(socketParams_t socketParams);
-		void closeWinSocket(int socket_fd);
-		#endif
+		void createWinSocket(socketParams_t* socketParams);
+		void closeWinSocket(socketParams_t* socketParams);
+	#endif
 #endif

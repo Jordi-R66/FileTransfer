@@ -13,7 +13,7 @@
 		#include <arpa/inet.h>
 		#include <unistd.h>
 
-		int createUnixSocket(socketParams_t socketParams);
-		void closeUnixSocket(int socket_fd);
+		void createUnixSocket(socketParams_t* socketParams);
+		void closeUnixSocket(socketParams_t* socketParams);
 	#endif
 #endif

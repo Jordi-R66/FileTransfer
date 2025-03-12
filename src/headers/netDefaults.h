@@ -4,12 +4,12 @@
 	#include "common.h"
 
 	// Labels
-
 	#define DEFAULT_DOMAIN AF_INET
 	#define DEFAULT_PORT 4635
 
 	// Type definitions
 	typedef struct sockaddr_in sockAddrIn;
+	typedef struct sockaddr sockAddr;
 
 	enum ConnType {
 		Sender = 0,
@@ -20,6 +20,7 @@
 
 	struct socketParams {
 		int socket_fd;
+		sockAddrIn socketAddress;
 
 		uint32_t srcAddr;
 		uint32_t destAddr;
