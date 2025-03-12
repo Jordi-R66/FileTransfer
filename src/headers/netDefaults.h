@@ -24,9 +24,9 @@
 		uint32_t remoteIp;
 		uint32_t localIp;
 
-		sockAddrIn socketAddress;
-
 		ConnType_t connType;
+
+		sockAddrIn socketAddress;
 	};
 
 	typedef struct socketParams socketParams_t;
