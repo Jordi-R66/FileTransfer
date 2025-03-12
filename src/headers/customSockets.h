@@ -17,7 +17,7 @@
 
 		#include "common.h"
 
-		void createSocket(osSpecific_t* osSpecific);
-		void closeSocket(osSpecific_t* osSpecific);
+		int createSocket(socketParams_t socketParams);
+		void closeSocket(int socket_fd);
 	#endif
 #endif
