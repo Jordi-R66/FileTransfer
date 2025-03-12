@@ -14,4 +14,6 @@
 		#include <stdbool.h>
 	#endif
 
+	typedef char* string;
+
 #endif
