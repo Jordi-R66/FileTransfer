@@ -10,8 +10,6 @@
 		#include <ws2tcpip.h>
 		#include <windows.h>
 
-		#include "customTypes.h"
-
 		struct WindowsSpecific {
 			WSADATA wsaData;
 		}

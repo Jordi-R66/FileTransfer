@@ -12,8 +12,6 @@
 		#include <arpa/inet.h>
 		#include <unistd.h>
 
-		#include "customTypes.h"
-
 		int createUnixSocket(socketParams_t socketParams);
 		void closeUnixSocket(int socket_fd);
 	#endif
