@@ -11,7 +11,7 @@ void createSocket(socketParams_t* socketParams) {
 }
 
 void bindSocket(socketParams_t* socketParams) {
-	int bind_ret_code = bind(socketParams->socket_fd, (const sockAddr*)(&socketParams->socketAddress), sizeof(socketParams->socketAddress));
+	int bind_ret_code = bind(socketParams->socket_fd, (const sockAddr*)(&socketParams->socketAddress), socketParams->socketLength);
 
 	if (bind_ret_code < 0) {
 		fprintf(stderr, "Couldn't bind socket\n");
