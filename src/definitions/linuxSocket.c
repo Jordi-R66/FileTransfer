@@ -2,7 +2,7 @@
 
 #ifdef UNIX_SOCKET_HEADER
 
-int createUnixSocket(socketParams_t* socketParams) {
+void createUnixSocket(socketParams_t* socketParams) {
 
 	ConnType_t connType = socketParams->connType;
 
