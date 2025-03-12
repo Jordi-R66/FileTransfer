@@ -18,6 +18,6 @@
 		#include "common.h"
 
 		void createSocket(osSpecific_t* osSpecific);
-
+		void closeSocket(osSpecific_t* osSpecific);
 	#endif
 #endif
