@@ -5,6 +5,7 @@
 		#define UNIX_SOCKET_HEADER
 
 		#include "common.h"
+		#include "netDefaults.h"
 
 		#include <netinet/in.h>
 		#include <sys/socket.h>
