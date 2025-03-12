@@ -30,6 +30,8 @@
 		 */
 		void bindSocket(socketParams_t* socketParams);
 
+		int listenToConnections(socketParams_t* listeningSocketParams, socketParams_t* remoteConn);
+
 		void closeSocket(socketParams_t* socketParams);
 
 		/**
