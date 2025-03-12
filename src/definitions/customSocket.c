@@ -24,14 +24,14 @@ int listenToConnections(socketParams_t* listeningSocketParams, socketParams_t* r
 
 	if (ret_listen < 0) {
 		fprintf(stderr, "Error happened on listening to incoming connections\n");
-		exit(EXIT_FAILURE);
+		return -1;
 	}
 
 	int connected_fd = accept(listeningSocketParams->fd, (sockAddr*)&listeningSocketParams->socketAddress, &listeningSocketParams->socketLength);
 
 	if (connected_fd < 0) {
 		fprintf(stderr, "Error happened on accepting incoming connections\n");
-		exit(EXIT_FAILURE);
+		return -1;
 	}
 
 	socketParams_t remote;
@@ -39,6 +39,8 @@ int listenToConnections(socketParams_t* listeningSocketParams, socketParams_t* r
 	remote.isMain = false;
 
 	*remoteConn = remote;
+
+	return 0;
 }
 
 void closeSocket(socketParams_t* socketParams) {
