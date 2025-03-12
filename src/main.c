@@ -9,7 +9,7 @@ int main() {
 
 	createSocket(&socketParams);
 
-
+	bindSocket(&socketParams);
 
 	closeSocket(&socketParams);
 
