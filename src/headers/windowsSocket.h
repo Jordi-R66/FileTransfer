@@ -7,9 +7,6 @@
 		#include "common.h"
 		
 
-		#include <winsock2.h>
-		#include <ws2tcpip.h>
-		#include <windows.h>
 
 		void createWinSocket(socketParams_t* socketParams);
 		void closeWinSocket(socketParams_t* socketParams);
