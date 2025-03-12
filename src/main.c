@@ -44,6 +44,8 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 
 	send(remoteParams.fd, &filesize, sizeof(filesize), 0);
 
+	sleep(2);
+
 	size_t readBytes = 1;
 
 	while (readBytes > 0) {
