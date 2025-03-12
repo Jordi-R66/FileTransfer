@@ -38,6 +38,14 @@
 
 	typedef enum ConnType ConnType_t;
 
+	struct Value64 {
+		uint64_t value;
+		uint8_t bits;
+		uint8_t endian : 1;
+	};
+
+	typedef struct Value64 Value64_t;
+
 	struct socketParams {
 		int fd;
 		bool isMain;
