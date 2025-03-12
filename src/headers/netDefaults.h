@@ -20,12 +20,11 @@
 
 	struct socketParams {
 		int socket_fd;
+
+		uint32_t remoteIp;
+		uint32_t localIp;
+
 		sockAddrIn socketAddress;
-
-		uint32_t srcAddr;
-		uint32_t destAddr;
-
-		uint16_t port;
 
 		ConnType_t connType;
 	};
