@@ -21,7 +21,12 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 
 	bindSocket(&socketParams);
 
-	listenToConnections(&socketParams, &remoteParams);
+	int ret_listen = listenToConnections(&socketParams, &remoteParams);
+
+	if (ret_listen < 0) {
+		// Pas besoin de faire un fprintf : la fonction le fait déjà
+		exit(EXIT_FAILURE);
+	}
 
 	ssize_t receivedFromRemote = recv(remoteParams.fd, buffer, BUFFER_SIZE, 0);
 
