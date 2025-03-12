@@ -10,7 +10,7 @@
 		#include <ws2tcpip.h>
 		#include <windows.h>
 
-		void createWinSocket();
-		void closeWinSocket();
+		int createWinSocket(socketParams_t socketParams);
+		void closeWinSocket(int socket_fd);
 		#endif
 #endif
