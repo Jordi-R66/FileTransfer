@@ -10,10 +10,6 @@
 		#include <ws2tcpip.h>
 		#include <windows.h>
 
-		struct WindowsSpecific {
-			WSADATA wsaData;
-		}
-
 		void createWinSocket();
 		void closeWinSocket();
 		#endif
