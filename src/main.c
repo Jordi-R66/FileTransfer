@@ -10,10 +10,6 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 
 	bindSocket(&socketParams);
 
-	for (size_t i=0; i<BUFFER_SIZE; i++) {
-		buffer[i] = 0;
-	}
-
 	closeSocket(&socketParams);
 }
 
@@ -30,6 +26,10 @@ void receiver(int8_t remote[4], uint8_t local[4], uint16_t port, string* filenam
 int main() {
 	uint8_t local[4];
 	uint8_t remote[4];
+
+	for (size_t i=0; i<BUFFER_SIZE; i++) {
+		buffer[i] = 0;
+	}
 
 
 
