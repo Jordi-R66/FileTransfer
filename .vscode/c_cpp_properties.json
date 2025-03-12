@@ -1,0 +1,36 @@
+{
+    "configurations": [
+        {
+            "name": "Linux64",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                ""
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "compilerArgs": [
+                "-m64"
+            ],
+            "intelliSenseMode": "linux-gcc-x64"
+        },
+        {
+            "name": "Win64",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "winDev"
+            ],
+            "compilerArgs": [
+                "-m64"
+            ],
+            "intelliSenseMode": "windows-gcc-x64",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
