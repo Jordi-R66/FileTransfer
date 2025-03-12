@@ -5,6 +5,7 @@
 #define COMMON_HEADER
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 #if defined __STDC_VERSION__ && __STDC_VERSION__ > 201710L
 /* bool, true and false are keywords.  */
