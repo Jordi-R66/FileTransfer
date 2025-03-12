@@ -17,6 +17,12 @@
 
 		#include "common.h"
 
+		/**
+		 * @brief Creates a Socket object
+		 * 
+		 * @param socketParams Parameters for the socket
+		 * @return int File descriptor of the socket
+		 */
 		int createSocket(socketParams_t socketParams);
 		void closeSocket(int socket_fd);
 	#endif
