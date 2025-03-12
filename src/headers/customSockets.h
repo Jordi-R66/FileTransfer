@@ -21,10 +21,15 @@
 		 * @brief Creates a Socket object
 		 * 
 		 * @param socketParams Parameters for the socket
-		 * @return int File descriptor of the socket
 		 */
-		int createSocket(socketParams_t* socketParams);
-		int bindSocket(socketParams_t* socketParams);
-		void closeSocket(int socket_fd);
+		void createSocket(socketParams_t* socketParams);
+
+		/**
+		 * @brief Binds a socket
+		 * 
+		 * @param socketParams Parameters for the socket
+		 */
+		void bindSocket(socketParams_t* socketParams);
+
 	#endif
 #endif
