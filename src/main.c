@@ -2,15 +2,16 @@
 #include "headers/customSockets.h"
 
 int main() {
-	socketParams_t socketParams;
+	uint8_t local[4];
+	uint8_t remote[4];
 
-	socketParams.connType = Sender;
-	socketParams.port = DEFAULT_PORT;
+	socketParams_t socketParams = generateParams(local, remote, DEFAULT_PORT, Sender);
 
-	int socket_fd = createSocket(socketParams);
-
+	createSocket(&socketParams);
 
 
-	closeSocket(socket_fd);
+
+	closeSocket(&socketParams);
+
 	return 0;
 }
