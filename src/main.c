@@ -12,15 +12,21 @@ size_t getFileSize(FILE* fp) {
 }
 
 void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename) {
+
+	printf("Preparing configuration as Sender\n");
+
 	socketParams_t socketParams = generateParams(local, remote, DEFAULT_PORT, Sender);
 	socketParams_t remoteParams;
 
 	socketParams.isMain = true;
 
+	printf("Creating socket\n");
 	createSocket(&socketParams);
 
+	printf("Binding socket\n");
 	bindSocket(&socketParams);
 
+	printf("Socket bound, waiting for connections...\n");
 	int ret_listen = listenToConnections(&socketParams, &remoteParams);
 
 	if (ret_listen < 0) {
@@ -28,6 +34,7 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 		exit(EXIT_FAILURE);
 	}
 
+	printf("Connection established\n");
 	ssize_t receivedFromRemote = recv(remoteParams.fd, buffer, BUFFER_SIZE, 0);
 
 	if (receivedFromRemote < 0) {
@@ -39,15 +46,18 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 		buffer[i] = 0;
 	}
 
+	printf("Preparing to send\n");
 	FILE* fp = fopen(*filename, "r");
 	Value64_t filesize = {getFileSize(fp), 64, getEndian()};
 
+	printf("The \"%s\" file weighs %llu bytes\n", *filename, filesize.value);
 	send(remoteParams.fd, &filesize, sizeof(filesize), 0);
 
 	sleep(2);
 
 	size_t readBytes = 1;
 
+	printf("Sending!\n");
 	while (readBytes > 0) {
 		readBytes = fread(buffer, 1, BUFFER_SIZE, fp);
 
@@ -60,6 +70,7 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 
 	const char EOT = 0x4;
 
+	printf("End of transmission!");
 	send(remoteParams.fd, &EOT, 1, 0);
 
 	fclose(fp);
