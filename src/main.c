@@ -42,7 +42,7 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 	FILE* fp = fopen(*filename, "r");
 	Value64_t filesize = {getFileSize(fp), 64, getEndian()};
 
-	send(remoteParams.fd, &filesize, sizeof());
+	send(remoteParams.fd, &filesize, sizeof(filesize), 0);
 
 	size_t readBytes = 1;
 
