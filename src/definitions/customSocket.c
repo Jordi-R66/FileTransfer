@@ -19,6 +19,27 @@ void bindSocket(socketParams_t* socketParams) {
 	}
 }
 
+int listenToConnections(socketParams_t* listeningSocketParams, socketParams_t* remoteConn) {
+	int ret_listen = listen(listeningSocketParams->socket_fd, 1);
+
+	if (ret_listen < 0) {
+		fprintf(stderr, "Error happened on listening to incoming connections\n");
+		exit(EXIT_FAILURE);
+	}
+
+	int connected_fd = accept(listeningSocketParams->socket_fd, (sockAddr*)&listeningSocketParams->socketAddress, &listeningSocketParams->socketLength);
+
+	if (connected_fd < 0) {
+		fprintf(stderr, "Error happened on accepting incoming connections\n");
+		exit(EXIT_FAILURE);
+	}
+
+	socketParams_t remote;
+	remote.socket_fd = connected_fd;
+
+	*remoteConn = remote;
+}
+
 void closeSocket(socketParams_t* socketParams) {
 	#ifdef __linux__
 		closeUnixSocket(socketParams);
