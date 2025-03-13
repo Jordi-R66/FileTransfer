@@ -19,6 +19,7 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 
 	socketParams_t socketParams = generateParams(local, remote, DEFAULT_PORT, Sender);
 	socketParams_t remoteParams;
+	Endianness_t remoteEndianness;
 
 	socketParams.isMain = true;
 
@@ -45,7 +46,9 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 	} else {
 		Value16_t recvInit = *(Value16_t*)buffer;
 
-		if (recvInit.endian != sysEndianness) {
+		remoteEndianness = recvInit.endian;
+
+		if (remoteEndianness != sysEndianness) {
 			swapEndianness(&recvInit.value, sizeof(recvInit.value));
 		}
 
@@ -94,6 +97,7 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 
 void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename) {
 	Value16_t initShort = { 6790, 2, sysEndianness };
+	Value64_t fileSize;
 
 	socketParams_t socketParams = generateParams(local, remote, DEFAULT_PORT, Receiver);
 	socketParams.isMain = true;
@@ -114,6 +118,10 @@ void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filena
 	uint64_t totalRecv = 0;
 	int n_recv = recv(socketParams.fd, &fileSize, sizeof(Value64_t), 0);
 
+	do {
+		n_recv = recv(socketParams.fd, buffer, BUFFER_SIZE, 0);
+		totalRecv += n_recv;
+	} while (totalRecv < fileSize.value);
 
 	closeSocket(&socketParams);
 }
