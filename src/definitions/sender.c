@@ -58,6 +58,10 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 	FILE* fp = fopen(*filename, "r");
 	Value64_t filesize = { getFileSize(fp), 64, sysEndianness };
 
+	if (sysEndianness != remoteEndianness) {
+		swapEndianness(&filesize.value, sizeof(filesize.value));
+	}
+
 	printf("The \"%s\" file weighs %llu bytes\n", *filename, filesize.value);
 	send(remoteParams.fd, &filesize, sizeof(filesize), 0);
 
