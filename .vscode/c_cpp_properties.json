@@ -21,9 +21,6 @@
             "includePath": [
                 "${workspaceFolder}/**"
             ],
-            "defines": [
-                "winDev"
-            ],
             "compilerArgs": [
                 "-m64"
             ],
