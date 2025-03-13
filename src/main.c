@@ -2,6 +2,7 @@
 #include "headers/customSockets.h"
 
 char buffer[BUFFER_SIZE];
+Endianness_t sysEndianness;
 
 size_t getFileSize(FILE* fp) {
 	fseek(fp, 0, SEEK_END);
@@ -48,7 +49,7 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 
 	printf("Preparing to send\n");
 	FILE* fp = fopen(*filename, "r");
-	Value64_t filesize = {getFileSize(fp), 64, getEndian()};
+	Value64_t filesize = {getFileSize(fp), 64, sysEndianness};
 
 	printf("The \"%s\" file weighs %llu bytes\n", *filename, filesize.value);
 	send(remoteParams.fd, &filesize, sizeof(filesize), 0);
@@ -90,6 +91,7 @@ void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filena
 }
 
 int main() {
+	sysEndianness = getEndian();
 	uint8_t local[4];
 	uint8_t remote[4];
 
