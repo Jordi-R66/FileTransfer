@@ -41,11 +41,26 @@
 
 	struct Value64 {
 		uint64_t value;
-		uint8_t bits;
-		uint8_t endian : 1;
+		uint8_t bytes;
+		uint8_t endian;
+	};
+
+	struct Value32 {
+		uint32_t value;
+		uint8_t bytes;
+		uint8_t endian;
+	};
+
+
+	struct Value16 {
+		uint16_t value;
+		uint8_t bytes;
+		uint8_t endian;
 	};
 
 	typedef struct Value64 Value64_t;
+	typedef struct Value32 Value32_t;
+	typedef struct Value16 Value16_t;
 
 	struct socketParams {
 		int fd;
