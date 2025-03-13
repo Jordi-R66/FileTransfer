@@ -3,6 +3,8 @@
 
 char buffer[BUFFER_SIZE];
 Endianness_t sysEndianness;
+uint16_t commInitVal = 0xABCD; // Arbitrary value to check endianness and initConn
+const char EOT = 0x4; // End of Transmission
 
 size_t getFileSize(FILE* fp) {
 	fseek(fp, 0, SEEK_END);
@@ -38,18 +40,29 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 	printf("Connection established\n");
 	ssize_t receivedFromRemote = recv(remoteParams.fd, buffer, BUFFER_SIZE, 0);
 
-	if (receivedFromRemote < 2) {
+	if (receivedFromRemote < sizeof(Value16_t)) {
 		fprintf(stderr, "Failed to receive initiation bytes from remote host\n");
 		exit(EXIT_FAILURE);
+	} else {
+		Value16_t recvInit = *(Value16_t*)buffer;
+
+		if (recvInit.endian != sysEndianness) {
+			swapEndianness(&recvInit.value, sizeof(recvInit.value));
+		}
+
+		if (recvInit.value != commInitVal) {
+			fprintf(stderr, "Failed to receive correct initiation bytes from remote host\n");
+			exit(EXIT_FAILURE);
+		}
 	}
 
-	for (size_t i=0; i<(size_t)receivedFromRemote; i++) {
+	for (size_t i = 0; i < (size_t)receivedFromRemote; i++) {
 		buffer[i] = 0;
 	}
 
 	printf("Preparing to send\n");
 	FILE* fp = fopen(*filename, "r");
-	Value64_t filesize = {getFileSize(fp), 64, sysEndianness};
+	Value64_t filesize = { getFileSize(fp), 64, sysEndianness };
 
 	printf("The \"%s\" file weighs %llu bytes\n", *filename, filesize.value);
 	send(remoteParams.fd, &filesize, sizeof(filesize), 0);
@@ -64,12 +77,10 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 
 		send(remoteParams.fd, buffer, readBytes, 0);
 
-		for (size_t i=0; i<readBytes; i++) {
+		for (size_t i = 0; i < readBytes; i++) {
 			buffer[i] = 0;
 		}
 	}
-
-	const char EOT = 0x4;
 
 	printf("End of transmission!");
 	send(remoteParams.fd, &EOT, 1, 0);
@@ -81,12 +92,23 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 }
 
 void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename) {
+	Value16_t initShort = { 6790, 2, sysEndianness };
+
 	socketParams_t socketParams = generateParams(local, remote, DEFAULT_PORT, Receiver);
 	socketParams.isMain = true;
 
 	createSocket(&socketParams);
 
-	bindSocket(&socketParams);
+	int status = connect(socketParams.fd, (sockAddr*)&socketParams.socketAddress, socketParams.socketLength);
+
+	if (status < 0) {
+		fprintf(stderr, "Couldn't connect to server\n");
+		exit(EXIT_FAILURE);
+	}
+
+	printf("Connected to server\n");
+
+
 
 	closeSocket(&socketParams);
 }
@@ -98,7 +120,7 @@ int main() {
 
 	string filename = "test.wav";
 
-	for (size_t i=0; i < BUFFER_SIZE; i++) {
+	for (size_t i = 0; i < BUFFER_SIZE; i++) {
 		buffer[i] = 0;
 	}
 
