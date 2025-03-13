@@ -10,6 +10,7 @@ enum Endianness {
 typedef enum Endianness Endianness_t;
 
 Endianness_t getEndian();
+void swapEndianness(void* data, size_t size);
 
 #define ENDIANNESS_HEADER
 #endif
