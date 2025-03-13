@@ -15,7 +15,6 @@ size_t getFileSize(FILE* fp) {
 }
 
 void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename) {
-
 	printf("Preparing configuration as Sender\n");
 
 	socketParams_t socketParams = generateParams(local, remote, DEFAULT_PORT, Sender);
