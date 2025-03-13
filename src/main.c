@@ -1,8 +1,8 @@
 #include "headers/common.h"
 #include "headers/customSockets.h"
 
-char buffer[BUFFER_SIZE];
-Endianness_t sysEndianness;
+char buffer[BUFFER_SIZE]; // Buffer for data
+Endianness_t sysEndianness; // System endianness
 uint16_t commInitVal = 0xABCD; // Arbitrary value to check endianness and initConn
 const char EOT = 0x4; // End of Transmission
 
