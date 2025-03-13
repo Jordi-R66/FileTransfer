@@ -109,6 +109,10 @@ void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filena
 
 	printf("Connected to server\n");
 
+	send(socketParams.fd, &initShort, sizeof(initShort), 0);
+
+	uint64_t totalRecv = 0;
+	int n_recv = recv(socketParams.fd, &fileSize, sizeof(Value64_t), 0);
 
 
 	closeSocket(&socketParams);
