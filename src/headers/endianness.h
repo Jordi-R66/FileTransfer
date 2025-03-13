@@ -2,6 +2,8 @@
 
 #ifndef ENDIANNESS_HEADER
 
+#include <stddef.h>
+
 enum Endianness {
 	Little = 0,
 	Big = 1
