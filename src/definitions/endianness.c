@@ -14,7 +14,6 @@ Endianness_t getEndian() {
 	return endian;
 }
 
-
 void swapEndianness(void* data, size_t size) {
 	uint8_t* bytes = (uint8_t*)data;
 
@@ -22,6 +21,22 @@ void swapEndianness(void* data, size_t size) {
 		uint8_t temp = bytes[i];
 		bytes[i] = bytes[size - i - 1];
 		bytes[size - i - 1] = temp;
+	}
+}
+
+void toBigEndian(void* data, size_t size) {
+	Endianness_t sysEndianness = getEndian();
+
+	if (sysEndianness == Little) {
+		swapEndianness(data, size);
+	}
+}
+
+void toLittleEndian(void* data, size_t size) {
+	Endianness_t sysEndianness = getEndian();
+
+	if (sysEndianness == Big) {
+		swapEndianness(data, size);
 	}
 }
 

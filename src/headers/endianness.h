@@ -25,6 +25,8 @@ Endianness_t getEndian();
  * @param size The size of the data (bytes)
  */
 void swapEndianness(void* data, size_t size);
+void toBigEndian(void* data, size_t size);
+void toLittleEndian(void* data, size_t size);
 
 #define ENDIANNESS_HEADER
 #endif
