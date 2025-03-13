@@ -37,8 +37,8 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 	printf("Connection established\n");
 	ssize_t receivedFromRemote = recv(remoteParams.fd, buffer, BUFFER_SIZE, 0);
 
-	if (receivedFromRemote < 0) {
-		fprintf(stderr, "Failed to receive initiation byte from remote host\n");
+	if (receivedFromRemote < 2) {
+		fprintf(stderr, "Failed to receive initiation bytes from remote host\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -95,7 +95,7 @@ int main() {
 
 	string filename = "test.wav";
 
-	for (size_t i=0; i<BUFFER_SIZE; i++) {
+	for (size_t i=0; i < BUFFER_SIZE; i++) {
 		buffer[i] = 0;
 	}
 
