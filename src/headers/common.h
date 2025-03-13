@@ -18,6 +18,8 @@
 
 	typedef char* string;
 
+	size_t getFileSize(FILE* fp);
+
 #endif
 
 #ifndef NET_DEFAULTS_HEADER
@@ -27,6 +29,9 @@
 	#define DEFAULT_PORT 4635
 
 	#define BUFFER_SIZE 1024
+	#define COMM_INIT_VAL 0xABCD
+
+	#define EOT 0x4; // End of Transmission
 
 	// Type definitions
 	typedef struct sockaddr_in sockAddrIn;
