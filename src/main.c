@@ -107,7 +107,7 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		runInfo.filename = filename;
 		runInfo.infoDefined = true;
 
-		printf("Mode: %s\nLocal IP: %d.%d.%d.%d\nRemote IP: %d.%d.%d.%d\nPort: %d\nFilename: %s\n", mode, localIP[0], localIP[1], localIP[2], localIP[3], remoteIP[0], remoteIP[1], remoteIP[2], remoteIP[3], portVal, filename);
+		printf("Mode: %d\nLocal IP: %d.%d.%d.%d\nRemote IP: %d.%d.%d.%d\nPort: %d\nFilename: %s\n", runInfo.type, localIP[0], localIP[1], localIP[2], localIP[3], remoteIP[0], remoteIP[1], remoteIP[2], remoteIP[3], portVal, filename);
 
 	} else {
 		fprintf(stderr, "Invalid number of arguments\nValid arguments are:\n\n\t%s (-s/-r) localIp remoteIp remotePort filename\n\nlocalIp and remoteIp are IPv4\nYou can either not type in any arguments or type all of these\n", argv[0]);
@@ -119,19 +119,19 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 
 int main(int argc, char** argv) {
 
-	/*RunInfo_t runInfo = arg_parser(argv, argc);
+	RunInfo_t runInfo = arg_parser(argv, argc);
 
 	uint8_t local[4];
 	uint8_t remote[4];
 
 	string filename = "test.wav";
 
-	printf("Hullo there!\n");*/
+	printf("Hullo there!\n");
 
-	uint8_t ip[4];
-	parseIp(argv[1], ip);
+	//uint8_t ip[4];
+	//parseIp(argv[1], ip);
 
-	printf("\n\t%u.%u.%u.%u\n", ip[0], ip[1], ip[2], ip[3]);
+	//printf("\n\t%u.%u.%u.%u\n", ip[0], ip[1], ip[2], ip[3]);
 
 	return 0;
 }
