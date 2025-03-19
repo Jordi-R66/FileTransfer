@@ -42,5 +42,12 @@ void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filena
 		fwrite(buffer, 1, n_recv, fp);
 	} while (totalRecv < fileSize.value);
 
+	if (totalRecv > fileSize.value) {
+		fprintf(stderr, "Received more data than expected\n");
+		exit(EXIT_FAILURE);
+	}
+
+	fclose(fp);
+
 	closeSocket(&socketParams);
 }
