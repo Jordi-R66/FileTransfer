@@ -14,6 +14,17 @@ struct RunInfo {
 
 typedef struct RunInfo RunInfo_t;
 
+uint16_t numberParser(string nbr) {
+	uint16_t output = 0;
+
+	for (size_t i = 0; i < strlen(nbr); i++) {
+		output *= 10;
+		output += nbr[i] - '0';
+	}
+
+	return output;
+}
+
 RunInfo_t arg_parser(string* argv, int arg_n) {
 	RunInfo_t runInfo;
 
@@ -34,6 +45,8 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 			fprintf(stderr, "Invalid mode\n");
 			exit(EXIT_FAILURE);
 		}
+
+
 	} else {
 		fprintf(stderr, "Invalid number of arguments\n");
 		exit(EXIT_FAILURE);
