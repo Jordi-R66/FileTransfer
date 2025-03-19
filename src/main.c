@@ -68,7 +68,7 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		runInfo.remote = *(uint32_t*)remoteIP;
 		runInfo.port = portVal;
 
-		strcpy(runInfo.filename, filename);
+		runInfo.filename = filename;
 		runInfo.infoDefined = true;
 
 	} else {
@@ -88,7 +88,7 @@ int main(int argc, char** argv) {
 
 	string filename = "test.wav";
 
-	
+	printf("Hullo there!\n");
 
 	return 0;
 }
