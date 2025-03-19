@@ -58,9 +58,9 @@ socketParams_t generateParams(uint8_t localIp[4], uint8_t remoteIp[4], uint16_t 
 	output.localIp = *(uint32_t*)localIp;
 	output.remoteIp = *(uint32_t*)remoteIp;
 
-	output.socketAddress.sin_addr.s_addr = output.localIp;
+	output.socketAddress.sin_addr.s_addr = output.connType == Sender ? output.localIp : output.remoteIp;
 	output.socketAddress.sin_family = DEFAULT_DOMAIN;
-	output.socketAddress.sin_port = htons(DEFAULT_PORT);
+	output.socketAddress.sin_port = port;
 
 	output.socketLength = sizeof(output.socketAddress);
 
