@@ -18,6 +18,7 @@ void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filena
 
 	if (status < 0) {
 		fprintf(stderr, "Couldn't connect to server\n");
+		perror("");
 		exit(EXIT_FAILURE);
 	}
 

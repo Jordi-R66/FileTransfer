@@ -7,6 +7,8 @@
 	#include <stdlib.h>
 	#include <stdint.h>
 	#include <string.h>
+	#include <errno.h>
+
 	#include "networkImports.h"
 	#include "endianness.h"
 
