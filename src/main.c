@@ -14,12 +14,17 @@ struct RunInfo {
 
 typedef struct RunInfo RunInfo_t;
 
-uint16_t numberParser(string nbr) {
+uint16_t numberParser(string nbr, size_t bits) {
 	uint16_t output = 0;
 
 	for (size_t i = 0; i < strlen(nbr); i++) {
 		output *= 10;
 		output += nbr[i] - '0';
+	}
+
+	if (output > (1 << bits) - 1) {
+		fprintf(stderr, "Number too large\n");
+		exit(EXIT_FAILURE);
 	}
 
 	return output;
@@ -53,11 +58,11 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		uint16_t portVal;
 
 		for (size_t i = 0; i < 4; i++) {
-			localIP[i] = numberParser(strtok(local, "."));
-			remoteIP[i] = numberParser(strtok(remote, "."));
+			localIP[i] = numberParser(strtok(local, "."), 8);
+			remoteIP[i] = numberParser(strtok(remote, "."), 8);
 		}
 
-		portVal = numberParser(port);
+		portVal = numberParser(port, 16);
 
 		runInfo.local = *(uint32_t*)localIP;
 		runInfo.remote = *(uint32_t*)remoteIP;
