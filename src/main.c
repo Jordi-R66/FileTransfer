@@ -107,7 +107,7 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		runInfo.filename = filename;
 		runInfo.infoDefined = true;
 
-		printf("Mode: %d\nLocal IP: %d.%d.%d.%d\nRemote IP: %d.%d.%d.%d\nPort: %d\nFilename: %s\n", runInfo.type, localIP[0], localIP[1], localIP[2], localIP[3], remoteIP[0], remoteIP[1], remoteIP[2], remoteIP[3], portVal, filename);
+		//printf("Mode: %d\nLocal IP: %d.%d.%d.%d\nRemote IP: %d.%d.%d.%d\nPort: %d\nFilename: %s\n", runInfo.type, localIP[0], localIP[1], localIP[2], localIP[3], remoteIP[0], remoteIP[1], remoteIP[2], remoteIP[3], portVal, filename);
 
 	} else {
 		fprintf(stderr, "Invalid number of arguments\nValid arguments are:\n\n\t%s (-s/-r) localIp remoteIp remotePort filename\n\nlocalIp and remoteIp are IPv4\nYou can either not type in any arguments or type all of these\n", argv[0]);
