@@ -94,25 +94,11 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 
 		// Parsing the local IP
 
-		for (size_t i = 0; i < sizeof(local); i++) {
-			char c = local[i];
-
-			if (c == delim) {
-				//printf("%s\n", buffer);
-				localIP[j] = numberParser(buffer, 8);
-				j++;
-			} else if (('0' <= c) && (c <= '9')){
-				buffer[j] = c;
-				printf("%c", c);
-			} else {
-				fprintf(stderr, "Invalid character '%c' in IP\n", c);
-				exit(EXIT_FAILURE);
-			}
-		}
-
-		printf("\n");
+		parseIp(local, localIP);
 
 		// Parsing the remote IP
+
+		parseIp(remote, remoteIP);
 
 		memset(buffer, 0, sizeof(buffer));
 		j = 0;
