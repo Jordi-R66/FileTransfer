@@ -48,6 +48,23 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 			exit(EXIT_FAILURE);
 		}
 
+		uint8_t localIP[4];
+		uint8_t remoteIP[4];
+		uint16_t portVal;
+
+		for (size_t i = 0; i < 4; i++) {
+			localIP[i] = numberParser(strtok(local, "."));
+			remoteIP[i] = numberParser(strtok(remote, "."));
+		}
+
+		portVal = numberParser(port);
+
+		runInfo.local = *(uint32_t*)localIP;
+		runInfo.remote = *(uint32_t*)remoteIP;
+		runInfo.port = portVal;
+
+		strcpy(runInfo.filename, filename);
+		runInfo.infoDefined = true;
 
 	} else {
 		fprintf(stderr, "Invalid number of arguments\n");
