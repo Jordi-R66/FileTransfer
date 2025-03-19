@@ -28,6 +28,8 @@ uint16_t numberParser(string nbr) {
 RunInfo_t arg_parser(string* argv, int arg_n) {
 	RunInfo_t runInfo;
 
+	memset(&runInfo, 0, sizeof(RunInfo_t));
+
 	if (arg_n == 1) {
 		runInfo.infoDefined = false;
 	} else if (arg_n == 6) {
