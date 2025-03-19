@@ -6,7 +6,7 @@
 void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename) {
 	uint8_t buffer[BUFFER_SIZE];
 
-	Value16_t initShort = { 6790, 2, getEndian() };
+	Value16_t initShort = { COMM_INIT_VAL, 2, getEndian() };
 	Value64_t fileSize;
 
 	socketParams_t socketParams = generateParams(local, remote, DEFAULT_PORT, Receiver);
