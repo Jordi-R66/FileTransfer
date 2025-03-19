@@ -37,6 +37,27 @@ uint16_t numberParser(string nbr, uint8_t bits) {
 	return output;
 }
 
+void parseIp(char* ipStr, uint8_t* ip) {
+	const char delim = '.';
+	char buffer[4] = {0, 0, 0, 0};
+	uint8_t j = 0;
+
+	for (size_t i = 0; i < strlen(ipStr); i++) {
+		char c = ipStr[i];
+
+		if (c == delim) {
+			ip[j] = numberParser(buffer, 8);
+			j++;
+		} else if (('0' <= c) && (c <= '9')){
+			buffer[j] = c;
+		} else {
+			fprintf(stderr, "Invalid character '%c' in IP\n", c);
+			exit(EXIT_FAILURE);
+		}
+	}
+
+}
+
 RunInfo_t arg_parser(string* argv, int arg_n) {
 	RunInfo_t runInfo;
 
@@ -60,14 +81,55 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 			exit(EXIT_FAILURE);
 		}
 
-		uint8_t localIP[4];
-		uint8_t remoteIP[4];
-		uint16_t portVal;
+		uint8_t localIP[4] = {0, 0, 0, 0};
+		uint8_t remoteIP[4] = {0, 0, 0, 0};
+		uint16_t portVal = 0;
 
-		for (size_t i = 0; i < 4; i++) {
-			localIP[i] = numberParser(strtok(local, "."), 8);
-			remoteIP[i] = numberParser(strtok(remote, "."), 8);
+		const char delim = '.';
+		char buffer[4] = {0, 0, 0, 0};
+		uint8_t j = 0;
+
+		// Parsing the local IP
+
+		for (size_t i = 0; i < sizeof(local); i++) {
+			char c = local[i];
+
+			if (c == delim) {
+				//printf("%s\n", buffer);
+				localIP[j] = numberParser(buffer, 8);
+				j++;
+			} else if (('0' <= c) && (c <= '9')){
+				buffer[j] = c;
+				printf("%c", c);
+			} else {
+				fprintf(stderr, "Invalid character '%c' in IP\n", c);
+				exit(EXIT_FAILURE);
+			}
 		}
+
+		printf("\n");
+
+		// Parsing the remote IP
+
+		memset(buffer, 0, sizeof(buffer));
+		j = 0;
+
+		for (size_t i = 0; i < sizeof(remote); i++) {
+			char c = remote[i];
+
+			if (c == delim) {
+				printf("%s\n", buffer);
+				remoteIP[j] = numberParser(buffer, 8);
+				j++;
+			} else if (('0' <= c) && (c <= '9')){
+				buffer[j] = c;
+			} else {
+				fprintf(stderr, "Invalid character '%c' in IP\n", c);
+				exit(EXIT_FAILURE);
+			}
+		}
+
+		// Parsing the remote port
 
 		portVal = numberParser(port, 16);
 
@@ -77,6 +139,8 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 
 		runInfo.filename = filename;
 		runInfo.infoDefined = true;
+
+		printf("Mode: %s\nLocal IP: %d.%d.%d.%d\nRemote IP: %d.%d.%d.%d\nPort: %d\nFilename: %s\n", mode, localIP[0], localIP[1], localIP[2], localIP[3], remoteIP[0], remoteIP[1], remoteIP[2], remoteIP[3], portVal, filename);
 
 	} else {
 		fprintf(stderr, "Invalid number of arguments\nValid arguments are:\n\n\t%s (-s/-r) localIp remoteIp remotePort filename\n\nlocalIp and remoteIp are IPv4\nYou can either not type in any arguments or type all of these\n", argv[0]);
