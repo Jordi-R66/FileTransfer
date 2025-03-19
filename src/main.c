@@ -126,8 +126,6 @@ int main(int argc, char** argv) {
 		swapEndianness(&runInfo.port, 2);
 	}
 
-	/*
-
 	if (!runInfo.infoDefined) {
 		fprintf(stderr, "Config can't be filled yet. Please use the arguments\n");
 		exit(EXIT_FAILURE);
@@ -145,7 +143,6 @@ int main(int argc, char** argv) {
 		default:
 			break;
 	}
-	*/
 
 	return 0;
 }
