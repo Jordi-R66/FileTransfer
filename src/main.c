@@ -40,22 +40,25 @@ uint16_t numberParser(string nbr, uint8_t bits) {
 void parseIp(char* ipStr, uint8_t* ip) {
 	const char delim = '.';
 	char buffer[4] = {0, 0, 0, 0};
-	uint8_t j = 0;
+	uint8_t j = 0, k = 0;
 
-	for (size_t i = 0; i < strlen(ipStr); i++) {
+	for (size_t i = 0; i <= strlen(ipStr); i++) {
 		char c = ipStr[i];
 
-		if (c == delim) {
-			ip[j] = numberParser(buffer, 8);
-			j++;
-		} else if (('0' <= c) && (c <= '9')){
+		if (('0' <= c) && (c <= '9')) {
 			buffer[j] = c;
+			j++;
+
+		} else if ((c == delim) || (i == strlen(ipStr))) {
+			ip[k++] = numberParser(buffer, 8);
+			memset(buffer, 0, 4);
+			j = 0;
+
 		} else {
 			fprintf(stderr, "Invalid character '%c' in IP\n", c);
 			exit(EXIT_FAILURE);
 		}
 	}
-
 }
 
 RunInfo_t arg_parser(string* argv, int arg_n) {
@@ -152,14 +155,19 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 
 int main(int argc, char** argv) {
 
-	RunInfo_t runInfo = arg_parser(argv, argc);
+	/*RunInfo_t runInfo = arg_parser(argv, argc);
 
 	uint8_t local[4];
 	uint8_t remote[4];
 
 	string filename = "test.wav";
 
-	printf("Hullo there!\n");
+	printf("Hullo there!\n");*/
+
+	uint8_t ip[4];
+	parseIp(argv[1], ip);
+
+	printf("\n\t%u.%u.%u.%u\n", ip[0], ip[1], ip[2], ip[3]);
 
 	return 0;
 }
