@@ -3,7 +3,16 @@
 #include "headers/sender.h"
 #include "headers/endianness.h"
 
-int main() {
+struct RunInfo {
+	ConnType_t type;
+	uint8_t local[4];
+	uint8_t remote[4];
+	uint16_t port;
+	string filename;
+	bool infoDefined;
+};
+
+typedef struct RunInfo RunInfo_t;
 	uint8_t local[4];
 	uint8_t remote[4];
 
