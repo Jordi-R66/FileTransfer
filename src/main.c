@@ -23,7 +23,7 @@ uint16_t numberParser(string nbr, size_t bits) {
 	}
 
 	if (output > (1 << bits) - 1) {
-		fprintf(stderr, "Number %s too large for a %d bits int\n");
+		fprintf(stderr, "Number %s too large for a %d bits int\n", nbr, bits);
 		exit(EXIT_FAILURE);
 	}
 
