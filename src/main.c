@@ -13,6 +13,10 @@ struct RunInfo {
 };
 
 typedef struct RunInfo RunInfo_t;
+int main(int argc, char** argv) {
+
+	RunInfo_t runInfo = arg_parser(argv, argc);
+
 	uint8_t local[4];
 	uint8_t remote[4];
 
