@@ -88,10 +88,6 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		uint8_t remoteIP[4] = {0, 0, 0, 0};
 		uint16_t portVal = 0;
 
-		const char delim = '.';
-		char buffer[4] = {0, 0, 0, 0};
-		uint8_t j = 0;
-
 		// Parsing the local IP
 
 		parseIp(local, localIP);
@@ -99,24 +95,6 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		// Parsing the remote IP
 
 		parseIp(remote, remoteIP);
-
-		memset(buffer, 0, sizeof(buffer));
-		j = 0;
-
-		for (size_t i = 0; i < sizeof(remote); i++) {
-			char c = remote[i];
-
-			if (c == delim) {
-				printf("%s\n", buffer);
-				remoteIP[j] = numberParser(buffer, 8);
-				j++;
-			} else if (('0' <= c) && (c <= '9')){
-				buffer[j] = c;
-			} else {
-				fprintf(stderr, "Invalid character '%c' in IP\n", c);
-				exit(EXIT_FAILURE);
-			}
-		}
 
 		// Parsing the remote port
 
