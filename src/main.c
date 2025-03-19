@@ -120,6 +120,13 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 int main(int argc, char** argv) {
 
 	RunInfo_t runInfo = arg_parser(argv, argc);
+	Endianness_t sysEndian = getEndian();
+
+	if (sysEndian != Big) {
+		swapEndianness(&runInfo.port, 2);
+	}
+
+	/*
 
 	if (!runInfo.infoDefined) {
 		fprintf(stderr, "Config can't be filled yet. Please use the arguments\n");
@@ -138,6 +145,7 @@ int main(int argc, char** argv) {
 		default:
 			break;
 	}
+	*/
 
 	return 0;
 }
