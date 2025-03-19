@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 
 	string filename = "test.wav";
 
-	sender(remote, local, DEFAULT_PORT, &filename);
+	
 
 	return 0;
 }
