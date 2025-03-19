@@ -82,7 +82,7 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 
 	sleep(2);
 
-	char eot;
+	char eot = EOT;
 
 	printf("End of transmission!");
 	send(remoteParams.fd, &eot, 1, 0);
