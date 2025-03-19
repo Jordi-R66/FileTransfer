@@ -14,7 +14,7 @@ struct RunInfo {
 
 typedef struct RunInfo RunInfo_t;
 
-uint16_t numberParser(string nbr, size_t bits) {
+uint16_t numberParser(string nbr, uint8_t bits) {
 	uint16_t output = 0;
 
 	for (size_t i = 0; i < strlen(nbr); i++) {
