@@ -12,7 +12,20 @@ void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filena
 	socketParams_t socketParams = generateParams(local, remote, DEFAULT_PORT, Receiver);
 	socketParams.isMain = true;
 
+	sockAddrIn local_addr;
+	memset(&local_addr, 0, sizeof(local_addr));
+	local_addr.sin_family = AF_INET;
+	local_addr.sin_addr.s_addr = socketParams.localIp;
+
 	createSocket(&socketParams);
+
+	int bindStatus = bind(socketParams.fd, (sockAddr*)&local_addr, sizeof(local_addr));
+
+	if (bindStatus < 0) {
+		fprintf(stderr, "Couldn't bind socket to local ip\n");
+		perror("");
+		exit(EXIT_FAILURE);
+	}
 
 	int status = connect(socketParams.fd, (sockAddr*)&socketParams.socketAddress, socketParams.socketLength);
 
