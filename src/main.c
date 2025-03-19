@@ -18,12 +18,19 @@ uint16_t numberParser(string nbr, uint8_t bits) {
 	uint16_t output = 0;
 
 	for (size_t i = 0; i < strlen(nbr); i++) {
+		int val = nbr[i] - '0';
+
+		if ((val < 0) || (val > 9)) {
+			fprintf(stderr, "Invalid character '%c' in number\n", nbr[i]);
+			exit(EXIT_FAILURE);
+		}
+
 		output *= 10;
-		output += nbr[i] - '0';
+		output += val;
 	}
 
 	if (output > (1 << bits) - 1) {
-		fprintf(stderr, "Number %s too large for a %d bits int\n", nbr, bits);
+		fprintf(stderr, "Number %s too large for a %u bits int\n", nbr, bits);
 		exit(EXIT_FAILURE);
 	}
 
