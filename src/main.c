@@ -23,7 +23,7 @@ uint16_t numberParser(string nbr, size_t bits) {
 	}
 
 	if (output > (1 << bits) - 1) {
-		fprintf(stderr, "Number too large\n");
+		fprintf(stderr, "Number %s too large for a %d bits int\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -72,7 +72,7 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		runInfo.infoDefined = true;
 
 	} else {
-		fprintf(stderr, "Invalid number of arguments\nValid arguments are:\n\n\t%s (-s/-r) localIp remoteIp port filename\n\nlocalIp and remoteIp are IPv4\nYou can either not type in any arguments or type all of these\n", argv[0]);
+		fprintf(stderr, "Invalid number of arguments\nValid arguments are:\n\n\t%s (-s/-r) localIp remoteIp remotePort filename\n\nlocalIp and remoteIp are IPv4\nYou can either not type in any arguments or type all of these\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
