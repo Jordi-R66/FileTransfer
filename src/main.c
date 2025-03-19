@@ -5,8 +5,8 @@
 
 struct RunInfo {
 	ConnType_t type;
-	uint8_t local[4];
-	uint8_t remote[4];
+	uint32_t local;
+	uint32_t remote;
 	uint16_t port;
 	string filename;
 	bool infoDefined;
@@ -67,7 +67,7 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		runInfo.infoDefined = true;
 
 	} else {
-		fprintf(stderr, "Invalid number of arguments\n");
+		fprintf(stderr, "Invalid number of arguments\nValid arguments are:\n\n\t%s (-s/-r) localIp remoteIp port filename\n\nlocalIp and remoteIp are IPv4\nYou can either not type in any arguments or type all of these\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
