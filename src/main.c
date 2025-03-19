@@ -121,17 +121,23 @@ int main(int argc, char** argv) {
 
 	RunInfo_t runInfo = arg_parser(argv, argc);
 
-	uint8_t local[4];
-	uint8_t remote[4];
+	if (!runInfo.infoDefined) {
+		fprintf(stderr, "Config can't be filled yet. Please use the arguments\n");
+		exit(EXIT_FAILURE);
+	}
 
-	string filename = "test.wav";
+	switch (runInfo.type) {
+		case Sender:
+			sender((uint8_t*)&runInfo.remote, (uint8_t*)&runInfo.local, runInfo.port, &runInfo.filename);
+			break;
 
-	printf("Hullo there!\n");
+		case Receiver:
+			receiver((uint8_t*)&runInfo.remote, (uint8_t*)&runInfo.local, runInfo.port, &runInfo.filename);
+			break;
 
-	//uint8_t ip[4];
-	//parseIp(argv[1], ip);
-
-	//printf("\n\t%u.%u.%u.%u\n", ip[0], ip[1], ip[2], ip[3]);
+		default:
+			break;
+	}
 
 	return 0;
 }
