@@ -21,7 +21,7 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 	printf("Binding socket\n");
 	bindSocket(&socketParams);
 
-	printf("Socket bound, waiting for connections...\n");
+	printf("Socket bound to %u.%u.%u.%u:%hu, waiting for connections...\n", local[0], local[1], local[2], local[3], port);
 	int ret_listen = listenToConnections(&socketParams, &remoteParams);
 
 	if (ret_listen < 0) {
