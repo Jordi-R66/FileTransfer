@@ -9,7 +9,7 @@ void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filena
 	Value16_t initShort = { COMM_INIT_VAL, 2, getEndian() };
 	Value64_t fileSize;
 
-	socketParams_t socketParams = generateParams(local, remote, DEFAULT_PORT, Receiver);
+	socketParams_t socketParams = generateParams(local, remote, port, Receiver);
 	socketParams.isMain = true;
 
 	sockAddrIn local_addr;
