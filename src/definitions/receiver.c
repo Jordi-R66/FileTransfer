@@ -31,7 +31,7 @@ void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filena
 	int status = connect(socketParams.fd, (sockAddr*)&socketParams.socketAddress, socketParams.socketLength);
 
 	if (status < 0) {
-		fprintf(stderr, "Couldn't connect to server at %u.%u.%u.%u:%x\n", remote[0], remote[1], remote[2], remote[3], port);
+		fprintf(stderr, "Couldn't connect to server at %u.%u.%u.%u:%hu\n", remote[0], remote[1], remote[2], remote[3], socketParams.port);
 		perror("");
 		exit(EXIT_FAILURE);
 	}

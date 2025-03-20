@@ -53,6 +53,13 @@ void closeSocket(socketParams_t* socketParams) {
 
 socketParams_t generateParams(uint8_t localIp[4], uint8_t remoteIp[4], uint16_t port, ConnType_t ConnType) {
 	socketParams_t output;
+	Endianness_t sysEndian = getEndian();
+
+	output.port = port;
+
+	if (sysEndian == Little) {
+		swapEndianness(&port, 2);
+	}
 
 	output.connType = ConnType;
 	output.localIp = *(uint32_t*)localIp;
