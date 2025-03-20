@@ -77,6 +77,7 @@
 		uint32_t localIp;
 
 		ConnType_t connType;
+		uint16_t port; // Port to connect to, stored in local endianness
 
 		sockAddrIn socketAddress;
 		socklen_t socketLength;
