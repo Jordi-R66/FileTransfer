@@ -7,7 +7,7 @@ void sender(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filename
 	uint8_t buffer[BUFFER_SIZE];
 	printf("Preparing configuration as Sender\n");
 
-	socketParams_t socketParams = generateParams(local, remote, DEFAULT_PORT, Sender);
+	socketParams_t socketParams = generateParams(local, remote, port, Sender);
 	socketParams_t remoteParams;
 
 	Endianness_t sysEndianness = getEndian();
