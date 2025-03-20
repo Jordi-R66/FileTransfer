@@ -60,7 +60,7 @@ socketParams_t generateParams(uint8_t localIp[4], uint8_t remoteIp[4], uint16_t 
 
 	output.socketAddress.sin_addr.s_addr = output.connType == Sender ? output.localIp : output.remoteIp;
 	output.socketAddress.sin_family = DEFAULT_DOMAIN;
-	output.socketAddress.sin_port = output.connType == Sender ? port : 0;
+	output.socketAddress.sin_port = port;
 
 	output.socketLength = sizeof(output.socketAddress);
 
