@@ -14,7 +14,7 @@ void receiver(uint8_t remote[4], uint8_t local[4], uint16_t port, string* filena
 
 	sockAddrIn local_addr;
 	memset(&local_addr, 0, sizeof(local_addr));
-	local_addr.sin_family = AF_INET;
+	local_addr.sin_family = DEFAULT_DOMAIN;
 	local_addr.sin_addr.s_addr = socketParams.localIp;
 	local_addr.sin_port = 0;
 
