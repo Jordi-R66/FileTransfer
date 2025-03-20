@@ -122,6 +122,8 @@ int main(int argc, char** argv) {
 	RunInfo_t runInfo = arg_parser(argv, argc);
 	Endianness_t sysEndian = getEndian();
 
+	printf("Your system is %s Endian\n", sysEndian == Big ? "Big" : "Little");
+
 	if (sysEndian != Big) {
 		swapEndianness(&runInfo.port, 2);
 	}

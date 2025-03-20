@@ -58,7 +58,7 @@ socketParams_t generateParams(uint8_t localIp[4], uint8_t remoteIp[4], uint16_t 
 	output.port = port;
 
 	if (sysEndian == Little) {
-		swapEndianness(&port, 2);
+		swapEndianness(&output.port, 2);
 	}
 
 	output.connType = ConnType;
