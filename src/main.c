@@ -5,10 +5,12 @@
 
 struct RunInfo {
 	ConnType_t type;
-	uint32_t local;
-	uint32_t remote;
+
+	uint32_t ip;
 	uint16_t port;
+
 	string filename;
+
 	bool infoDefined;
 };
 
@@ -68,10 +70,9 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 
 	if (arg_n == 1) {
 		runInfo.infoDefined = false;
-	} else if (arg_n == 6) {
+	} else if (arg_n == 5) {
 		string mode = argv[1]; // Either `-s` or `-r`
-		string local = argv[2]; // Local IPv4 as a string
-		string remote = argv[3]; // Remote IPv4 as a string
+		string ip = argv[2]; // Local IPv4 as a string
 		string port = argv[4]; // Port to use
 		string filename = argv[5]; // File to send
 
@@ -84,24 +85,18 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 			exit(EXIT_FAILURE);
 		}
 
-		uint8_t localIP[4] = {0, 0, 0, 0};
-		uint8_t remoteIP[4] = {0, 0, 0, 0};
+		uint8_t IP[4] = {0, 0, 0, 0};
 		uint16_t portVal = 0;
 
 		// Parsing the local IP
 
-		parseIp(local, localIP);
-
-		// Parsing the remote IP
-
-		parseIp(remote, remoteIP);
+		parseIp(ip, IP);
 
 		// Parsing the remote port
 
 		portVal = numberParser(port, 16);
 
-		runInfo.local = *(uint32_t*)localIP;
-		runInfo.remote = *(uint32_t*)remoteIP;
+		runInfo.ip = *(uint32_t*)IP;
 		runInfo.port = portVal;
 
 		runInfo.filename = filename;
@@ -135,11 +130,11 @@ int main(int argc, char** argv) {
 
 	switch (runInfo.type) {
 		case Sender:
-			sender((uint8_t*)&runInfo.remote, (uint8_t*)&runInfo.local, runInfo.port, &runInfo.filename);
+			sender((uint8_t*)&runInfo.ip, runInfo.port, &runInfo.filename);
 			break;
 
 		case Receiver:
-			receiver((uint8_t*)&runInfo.remote, runInfo.port, &runInfo.filename);
+			receiver((uint8_t*)&runInfo.ip, runInfo.port, &runInfo.filename);
 			break;
 
 		default:
