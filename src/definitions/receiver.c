@@ -9,13 +9,13 @@ void receiver(uint8_t remote[4], uint16_t port, string* filename) {
 	Value16_t initShort = { COMM_INIT_VAL, 2, getEndian() };
 	Value64_t fileSize;
 
-	socketParams_t socketParams = generateParams(local, remote, port, Receiver);
+	socketParams_t socketParams = generateParams(remote, port, Receiver);
 	socketParams.isMain = true;
 
 	sockAddrIn local_addr;
 	memset(&local_addr, 0, sizeof(local_addr));
 	local_addr.sin_family = DEFAULT_DOMAIN;
-	local_addr.sin_addr.s_addr = socketParams.localIp;
+	local_addr.sin_addr.s_addr = socketParams.Ip;
 	local_addr.sin_port = 0;
 
 	createSocket(&socketParams);
