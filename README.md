@@ -11,13 +11,13 @@ The programs only works with IPv4 addresses
 ### Sending
 
 ```shell
-./FileTransfer -s localIPv4 remoteIPv4 port filename
+./FileTransfer -s localIp port filename
 ```
 
 ### Receiving
 
 ```shell
-./FileTransfer -r localIPv4 remoteIPv4 port filename
+./FileTransfer -r remoteIp port filename
 ```
 
 ### Important thing to know
