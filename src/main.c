@@ -139,7 +139,7 @@ int main(int argc, char** argv) {
 			break;
 
 		case Receiver:
-			receiver((uint8_t*)&runInfo.remote, (uint8_t*)&runInfo.local, runInfo.port, &runInfo.filename);
+			receiver((uint8_t*)&runInfo.remote, runInfo.port, &runInfo.filename);
 			break;
 
 		default:
