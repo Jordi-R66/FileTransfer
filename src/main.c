@@ -139,8 +139,10 @@ int main(int argc, char** argv) {
 			while (attempts <= MAX_RETRIES) {
 				int8_t status = receiver((uint8_t*)&runInfo.ip, runInfo.port, &runInfo.filename);
 
-				if (status != 0) {
+				if (status == 0) {
 					break;
+				} else if (attempts != MAX_RETRIES) {
+					sleep(ATTEMPT_INTERVAL);
 				}
 
 				attempts++;
