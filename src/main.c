@@ -72,7 +72,7 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		runInfo.infoDefined = false;
 	} else if (arg_n == 5) {
 		string mode = argv[1]; // Either `-s` or `-r`
-		string ip = argv[2]; // Local IPv4 as a string
+		string ip = argv[2]; // IPv4 as a string
 		string port = argv[4]; // Port to use
 		string filename = argv[5]; // File to send
 
@@ -88,7 +88,7 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		uint8_t IP[4] = {0, 0, 0, 0};
 		uint16_t portVal = 0;
 
-		// Parsing the local IP
+		// Parsing the IP
 
 		parseIp(ip, IP);
 
@@ -105,7 +105,7 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		//printf("Mode: %d\nLocal IP: %d.%d.%d.%d\nRemote IP: %d.%d.%d.%d\nPort: %d\nFilename: %s\n", runInfo.type, localIP[0], localIP[1], localIP[2], localIP[3], remoteIP[0], remoteIP[1], remoteIP[2], remoteIP[3], portVal, filename);
 
 	} else {
-		fprintf(stderr, "Invalid number of arguments\nValid arguments are:\n\n\t%s (-s/-r) localIp remoteIp remotePort filename\n\nlocalIp and remoteIp are IPv4\nYou can either not type in any arguments or type all of these\n", argv[0]);
+		fprintf(stderr, "Invalid number of arguments\nValid arguments are:\n\n\t%s (-s/-r) Ip remotePort filename\n\nIp is IPv4\nYou can either not type in any arguments or type all of these\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
