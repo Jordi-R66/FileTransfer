@@ -73,8 +73,7 @@
 		int fd;
 		bool isMain;
 
-		uint32_t remoteIp;
-		uint32_t localIp;
+		uint32_t Ip;
 
 		ConnType_t connType;
 		uint16_t port; // Port to connect to, stored in local endianness

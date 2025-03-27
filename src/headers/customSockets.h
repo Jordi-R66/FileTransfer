@@ -43,7 +43,7 @@
 		 * @param ConnType Connection type, either Sender or Receiver
 		 * @return socketParams_t 
 		 */
-		socketParams_t generateParams(uint8_t localIp[4], uint8_t remoteIp[4], uint16_t port, ConnType_t ConnType);
+		socketParams_t generateParams(uint8_t Ip[4], uint16_t port, ConnType_t ConnType);
 
 	#endif
 #endif
