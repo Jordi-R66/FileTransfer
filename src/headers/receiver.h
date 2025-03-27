@@ -1,5 +1,8 @@
 #include "common.h"
 
+#define MAX_RETRIES 128 // Max amount of connection attempts
+#define ATTEMPT_INTERVAL 5 // Interval in seconds between two connection attempts
+
 /**
  * @brief Gets ready to receive and write a file from network
  * 
