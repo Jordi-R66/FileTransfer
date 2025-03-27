@@ -74,7 +74,7 @@ RunInfo_t arg_parser(string* argv, int arg_n) {
 		string mode = argv[1]; // Either `-s` or `-r`
 		string ip = argv[2]; // IPv4 as a string
 		string port = argv[3]; // Port to use
-		string filename = argv[4]; // File to send
+		string filename = argv[4]; // File to send/receive
 
 		if (strcmp(mode, "-s") == 0) {
 			runInfo.type = Sender;
