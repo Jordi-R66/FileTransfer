@@ -51,7 +51,7 @@ void closeSocket(socketParams_t* socketParams) {
 	#endif
 }
 
-socketParams_t generateParams(uint8_t Ip, uint16_t port, ConnType_t ConnType) {
+socketParams_t generateParams(uint8_t Ip[4], uint16_t port, ConnType_t ConnType) {
 	socketParams_t output;
 	Endianness_t sysEndian = getEndian();
 
