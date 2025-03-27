@@ -3,7 +3,7 @@
 
 #include "../headers/endianness.h"
 
-void receiver(uint8_t remote[4], uint16_t port, string* filename) {
+int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
 	uint8_t buffer[BUFFER_SIZE];
 
 	Value16_t initShort = { COMM_INIT_VAL, 2, getEndian() };
@@ -23,6 +23,7 @@ void receiver(uint8_t remote[4], uint16_t port, string* filename) {
 	int status = connect(socketParams.fd, (sockAddr*)&socketParams.socketAddress, socketParams.socketLength);
 
 	if (status < 0) {
+		return -1;
 		fprintf(stderr, "Couldn't connect to server at %u.%u.%u.%u:%hu\n", remote[0], remote[1], remote[2], remote[3], socketParams.port);
 		perror("");
 		exit(EXIT_FAILURE);
@@ -57,4 +58,6 @@ void receiver(uint8_t remote[4], uint16_t port, string* filename) {
 	fclose(fp);
 
 	closeSocket(&socketParams);
+
+	return 0;
 }
