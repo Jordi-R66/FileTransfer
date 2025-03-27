@@ -134,7 +134,18 @@ int main(int argc, char** argv) {
 			break;
 
 		case Receiver:
-			receiver((uint8_t*)&runInfo.ip, runInfo.port, &runInfo.filename);
+			uint16_t attempts = 1;
+
+			while (attempts <= MAX_RETRIES) {
+				int8_t status = receiver((uint8_t*)&runInfo.ip, runInfo.port, &runInfo.filename);
+
+				if (status != 0) {
+					break;
+				}
+
+				attempts++;
+			}
+
 			break;
 
 		default:
