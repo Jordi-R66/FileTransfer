@@ -24,6 +24,7 @@
             "compilerArgs": [
                 "-m64"
             ],
+            "compilerPath": "C:/Program Files/mingw64/bin/gcc.exe",
             "intelliSenseMode": "windows-gcc-x64",
             "cStandard": "c17",
             "cppStandard": "c++17"
