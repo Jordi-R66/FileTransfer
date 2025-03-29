@@ -33,10 +33,10 @@ int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
 
 	printf("Connected to server\n");
 
-	send(socketParams.fd, &initShort, sizeof(initShort), 0);
+	send(socketParams.fd, (char*)&initShort, sizeof(initShort), 0);
 
 	uint64_t totalRecv = 0;
-	int n_recv = recv(socketParams.fd, &fileSize, sizeof(Value64_t), 0);
+	int n_recv = recv(socketParams.fd, (char*)&fileSize, sizeof(Value64_t), 0);
 
 	FILE* fp = fopen(*filename, "w");
 
@@ -46,7 +46,7 @@ int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
 	}
 
 	do {
-		n_recv = recv(socketParams.fd, buffer, BUFFER_SIZE, 0);
+		n_recv = recv(socketParams.fd, (char*)buffer, BUFFER_SIZE, 0);
 		totalRecv += n_recv;
 
 		fwrite(buffer, 1, n_recv, fp);

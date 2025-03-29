@@ -30,7 +30,7 @@ void sender(uint8_t local[4], uint16_t port, string* filename) {
 	}
 
 	printf("Connection established\n");
-	ssize_t receivedFromRemote = recv(remoteParams.fd, buffer, BUFFER_SIZE, 0);
+	ssize_t receivedFromRemote = recv(remoteParams.fd, (char*)buffer, BUFFER_SIZE, 0);
 
 	if (receivedFromRemote < sizeof(Value16_t)) {
 		fprintf(stderr, "Failed to receive initiation bytes from remote host\n");
@@ -63,7 +63,7 @@ void sender(uint8_t local[4], uint16_t port, string* filename) {
 	}
 
 	printf("The \"%s\" file weighs %llu bytes\n", *filename, filesize.value);
-	send(remoteParams.fd, &filesize, sizeof(filesize), 0);
+	send(remoteParams.fd, (char*)&filesize, sizeof(filesize), 0);
 
 	sysSleep(2);
 
@@ -73,7 +73,7 @@ void sender(uint8_t local[4], uint16_t port, string* filename) {
 	while (readBytes > 0) {
 		readBytes = fread(buffer, 1, BUFFER_SIZE, fp);
 
-		send(remoteParams.fd, buffer, readBytes, 0);
+		send(remoteParams.fd, (char*)buffer, readBytes, 0);
 
 		for (size_t i = 0; i < readBytes; i++) {
 			buffer[i] = 0;
