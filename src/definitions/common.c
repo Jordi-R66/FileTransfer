@@ -12,6 +12,6 @@ void sysSleep(int seconds) {
 	#ifdef __linux__
 		sleep(seconds);
 	#elif defined(_WIN32)
-		Sleep(seconds);
+		Sleep(seconds * 1000);
 	#endif
 }
