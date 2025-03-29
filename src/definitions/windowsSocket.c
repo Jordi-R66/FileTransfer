@@ -28,7 +28,7 @@ void createWinSocket(socketParams_t* socketParams) {
 }
 
 void closeWinSocket(socketParams_t* socketParams) {
-	closesocket(socketParams->socket_fd);
+	closesocket(socketParams->fd);
 
 	if (socketParams->isMain) {
 		WSACleanup();

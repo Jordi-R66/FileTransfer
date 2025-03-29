@@ -21,6 +21,7 @@
 	typedef char* string;
 
 	size_t getFileSize(FILE* fp);
+	void sysSleep(int seconds);
 
 #endif
 

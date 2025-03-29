@@ -11,7 +11,7 @@
 	#include <ws2tcpip.h>
 	#include <windows.h>
 
-	#pragma comment(lib, "ws2_32.lib")
+	//#pragma comment(lib, "ws2_32.lib")
 #else
 	#error 'Unsupported OS'
 #endif

@@ -142,7 +142,7 @@ int main(int argc, char** argv) {
 				if (status == 0) {
 					break;
 				} else if (attempts != MAX_RETRIES) {
-					sleep(ATTEMPT_INTERVAL);
+					sysSleep(ATTEMPT_INTERVAL);
 				}
 
 				attempts++;

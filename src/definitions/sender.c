@@ -65,7 +65,7 @@ void sender(uint8_t local[4], uint16_t port, string* filename) {
 	printf("The \"%s\" file weighs %llu bytes\n", *filename, filesize.value);
 	send(remoteParams.fd, &filesize, sizeof(filesize), 0);
 
-	sleep(2);
+	sysSleep(2);
 
 	size_t readBytes = 1;
 
@@ -80,7 +80,7 @@ void sender(uint8_t local[4], uint16_t port, string* filename) {
 		}
 	}
 
-	sleep(2);
+	sysSleep(2);
 
 	char eot = EOT;
 

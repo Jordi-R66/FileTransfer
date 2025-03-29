@@ -7,3 +7,11 @@ size_t getFileSize(FILE* fp) {
 
 	return filesize;
 }
+
+void sysSleep(int seconds) {
+	#ifdef __linux__
+		sleep(seconds);
+	#else defined(_WIN32)
+		Sleep(seconds);
+	#endif
+}
