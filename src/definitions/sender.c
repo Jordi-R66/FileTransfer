@@ -5,6 +5,8 @@
 
 void sender(uint8_t local[4], uint16_t port, string* filename) {
 	uint8_t buffer[BUFFER_SIZE];
+	memset(buffer, 0, BUFFER_SIZE);
+
 	printf("Preparing configuration as Sender\n");
 
 	socketParams_t socketParams = generateParams(local, port, Sender);
@@ -75,9 +77,7 @@ void sender(uint8_t local[4], uint16_t port, string* filename) {
 
 		send(remoteParams.fd, (char*)buffer, readBytes, 0);
 
-		for (size_t i = 0; i < readBytes; i++) {
-			buffer[i] = 0;
-		}
+		memset(buffer, 0, BUFFER_SIZE);
 	}
 
 	sysSleep(2);
