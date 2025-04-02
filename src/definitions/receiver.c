@@ -57,6 +57,7 @@ int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
 		totalRecv += n_recv;
 
 		fwrite(buffer, 1, n_recv, fp);
+		memset(buffer, 0, BUFFER_SIZE);
 	} while (totalRecv < fileSize.value);
 
 	if (totalRecv > fileSize.value) {
