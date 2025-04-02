@@ -43,7 +43,7 @@ int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
 		swapEndianness(&fileSize.value, 64/8);
 	}
 
-	fprintf(stdin, "Ready to receive a %llu bytes file.\n", fileSize.value);
+	fprintf(stdout, "Ready to receive a %llu bytes.\n", fileSize.value);
 
 	FILE* fp = fopen(*filename, "w");
 
