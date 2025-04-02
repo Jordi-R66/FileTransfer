@@ -4,6 +4,7 @@
 #include "../headers/endianness.h"
 
 int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
+	Endianness_t sysEndian = getEndian();
 	uint8_t buffer[BUFFER_SIZE];
 
 	Value16_t initShort = { COMM_INIT_VAL, 2, getEndian() };
@@ -37,6 +38,12 @@ int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
 
 	uint64_t totalRecv = 0;
 	int n_recv = recv(socketParams.fd, (char*)&fileSize, sizeof(Value64_t), 0);
+
+	if (fileSize.endian != sysEndian) {
+		swapEndianness(&fileSize.value, 64/8);
+	}
+
+	fprintf(stdin, "Ready to receive a %llu bytes file.\n", fileSize.value);
 
 	FILE* fp = fopen(*filename, "w");
 
