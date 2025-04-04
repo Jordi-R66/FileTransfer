@@ -16,7 +16,19 @@ int8_t linuxRecv(uint8_t remote[4], uint16_t port, string* filename) {
 	local_addr.sin_addr.s_addr = socketParams.Ip;
 	local_addr.sin_port = 0;
 
-	createUnixSocket(&socketParams);
+	if (socketParams.connType == Sender || socketParams.connType == Receiver) {
+		int socket_fd = socket(DEFAULT_DOMAIN, SOCK_STREAM, 0);
+
+		if (socket_fd == -1) {
+			fprintf(stderr, "Socket creation failed\n");
+			exit(EXIT_FAILURE);
+		}
+
+		socketParams.fd = socket_fd;
+	} else {
+		fprintf(stderr, "Invalid connection type\n");
+		exit(EXIT_FAILURE);
+	}
 
 	int status = connect(socketParams.fd, (sockAddr*)&socketParams.socketAddress, socketParams.socketLength);
 
