@@ -1,8 +1,11 @@
 #include "../headers/receiver.h"
-#include "../headers/customSockets.h"
+
+#ifdef LINUX
+#include "../headers/unix/linuxRecv.h"
+#endif
 
 int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
-	Endianness_t sysEndian = getEndian();
+	/*Endianness_t sysEndian = getEndian();
 	uint8_t buffer[BUFFER_SIZE];
 
 	Value16_t initShort = { COMM_INIT_VAL, 2, getEndian() };
@@ -67,5 +70,7 @@ int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
 
 	closeSocket(&socketParams);
 
-	return 0;
+	return 0;*/
+
+	return linuxRecv(remote, port, filename);
 }
