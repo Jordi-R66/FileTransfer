@@ -17,7 +17,7 @@
             "intelliSenseMode": "linux-gcc-x64"
         },
         {
-            "name": "Win64",
+            "name": "Win64 From Windows",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
@@ -25,6 +25,19 @@
                 "-m64"
             ],
             "compilerPath": "C:/Program Files/mingw64/bin/gcc.exe",
+            "intelliSenseMode": "windows-gcc-x64",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
+        },
+        {
+            "name": "Win64 From Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "compilerArgs": [
+                "-m64"
+            ],
+            "compilerPath": "/usr/bin/x86_64-w64-mingw32-gcc",
             "intelliSenseMode": "windows-gcc-x64",
             "cStandard": "c17",
             "cppStandard": "c++17"
