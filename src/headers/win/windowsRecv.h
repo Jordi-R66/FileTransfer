@@ -2,8 +2,6 @@
 
 #include "../common.h"
 
-#define WIN
-
 #ifdef WIN
 	#ifndef WIN_RECV_H
 
