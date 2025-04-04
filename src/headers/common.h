@@ -12,6 +12,16 @@
 	#include "networkImports.h"
 	#include "endianness.h"
 
+	#ifdef __linux__
+		#define UNIX
+	#elif defined(_WIN32)
+		#define WIN
+	#else
+		#define TargetError
+		#define Error
+		#error "Target OS not supported"
+	#endif
+
 	#if defined __STDC_VERSION__ && __STDC_VERSION__ > 201710L
 		/* bool, true and false are keywords.  */
 	#else
