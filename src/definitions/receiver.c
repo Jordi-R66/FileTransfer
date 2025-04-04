@@ -8,11 +8,12 @@
 	#endif
 
 	int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
+		uint8_t status_code;
 
 		#if defined(UNIX)
-			uint8_t status_code = linuxRecv(remote, port, filename);
+			status_code = linuxRecv(remote, port, filename);
 		#elif defined(WIN)
-			uint8_t status_code = winRecv(remote, port, filename);
+			status_code = winRecv(remote, port, filename);
 		#endif
 
 		return status_code;
