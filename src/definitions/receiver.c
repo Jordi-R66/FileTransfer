@@ -8,7 +8,7 @@
 	#endif
 
 	int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
-		uint8_t status_code;
+		int8_t status_code;
 
 		#if defined(UNIX)
 			status_code = linuxRecv(remote, port, filename);
