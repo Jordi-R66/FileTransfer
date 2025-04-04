@@ -6,7 +6,9 @@
 	],
 	"settings": {
 		"files.associations": {
-			"common.h": "c"
+			"*.py3": "python",
+			"common.h": "c",
+			"linuxrecv.h": "c"
 		}
 	}
 }
