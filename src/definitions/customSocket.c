@@ -3,9 +3,7 @@
 #ifdef CUSTOM_SOCKETS_HEADER
 
 void createSocket(socketParams_t* socketParams) {
-	#ifdef __linux__
-		createUnixSocket(socketParams);
-	#elif defined(_WIN32)
+	#if defined(_WIN32)
 		createWinSocket(socketParams);
 	#endif
 }
@@ -44,9 +42,7 @@ int listenToConnections(socketParams_t* listeningSocketParams, socketParams_t* r
 }
 
 void closeSocket(socketParams_t* socketParams) {
-	#ifdef __linux__
-		closeUnixSocket(socketParams);
-	#elif defined(_WIN32)
+	#if defined(_WIN32)
 		closeWinSocket(socketParams);
 	#endif
 }
