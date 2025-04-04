@@ -2,9 +2,9 @@
 
 #ifndef CUSTOM_SOCKETS_HEADER
 	#ifdef __linux__
-		#include "linuxSocket.h"
+		#include "../unix/linuxSocket.h"
 	#elif defined(_WIN32)
-		#include "windowsSocket.h"
+		#include "../win/windowsSocket.h"
 	#else
 		#define TargetError
 		#define Error
