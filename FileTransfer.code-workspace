@@ -8,7 +8,8 @@
 		"files.associations": {
 			"*.py3": "python",
 			"common.h": "c",
-			"linuxrecv.h": "c"
+			"linuxrecv.h": "c",
+			"receiver.h": "c"
 		}
 	}
 }
