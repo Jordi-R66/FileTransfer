@@ -1,5 +1,7 @@
 #include "../../headers/win/windowsRecv.h"
 
+#ifdef WIN_RECV_H
+
 int8_t winRecv(uint8_t remote[4], uint16_t port, string* filename) {
 	Endianness_t sysEndian = getEndian();
 	uint8_t buffer[BUFFER_SIZE];
@@ -16,12 +18,31 @@ int8_t winRecv(uint8_t remote[4], uint16_t port, string* filename) {
 	local_addr.sin_addr.s_addr = socketParams.Ip;
 	local_addr.sin_port = 0;
 
-	createSocket(&socketParams);
+	WSADATA wsaData;
+
+	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+		fprintf(stderr, "WSAStartup failed with error: %d\n", WSAGetLastError());
+		exit(EXIT_FAILURE);
+	}
+
+	if (socketParams.connType == Sender || socketParams.connType == Receiver) {
+		int socket_fd = socket(DEFAULT_DOMAIN, SOCK_STREAM, 0);
+
+		if (socket_fd == INVALID_SOCKET) {
+			fprintf(stderr, "Sender socket creation failed with error: %d\n", WSAGetLastError());
+			exit(EXIT_FAILURE);
+		}
+
+		socketParams.fd = socket_fd;
+	} else {
+		fprintf(stderr, "Invalid connection type\n");
+		exit(EXIT_FAILURE);
+	}
 
 	int status = connect(socketParams.fd, (sockAddr*)&socketParams.socketAddress, socketParams.socketLength);
 
 	if (status < 0) {
-		closeSocket(&socketParams);
+		closeWinSocket(&socketParams);
 		return -1;
 
 		fprintf(stderr, "Couldn't connect to server at %u.%u.%u.%u:%hu\n", remote[0], remote[1], remote[2], remote[3], socketParams.port);
@@ -46,6 +67,7 @@ int8_t winRecv(uint8_t remote[4], uint16_t port, string* filename) {
 
 	if (fp == NULL) {
 		fprintf(stderr, "Couldn't open file\n");
+		closeWinSocket(&socketParams);
 		exit(EXIT_FAILURE);
 	}
 
@@ -59,12 +81,15 @@ int8_t winRecv(uint8_t remote[4], uint16_t port, string* filename) {
 
 	if (totalRecv > fileSize.value) {
 		fprintf(stderr, "Received more data than expected\n");
+		closeWinSocket(&socketParams);
+		fclose(fp);
 		exit(EXIT_FAILURE);
 	}
 
+	closeWinSocket(&socketParams);
 	fclose(fp);
-
-	closeSocket(&socketParams);
 
 	return 0;
 }
+
+#endif
