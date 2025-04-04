@@ -15,3 +15,25 @@ void sysSleep(int seconds) {
 		Sleep(seconds * 1000);
 	#endif
 }
+
+socketParams_t generateParams(uint8_t Ip[4], uint16_t port, ConnType_t ConnType) {
+	socketParams_t output;
+	Endianness_t sysEndian = getEndian();
+
+	output.port = port;
+
+	if (sysEndian == Little) {
+		swapEndianness(&output.port, 2);
+	}
+
+	output.connType = ConnType;
+	output.Ip = *(uint32_t*)Ip;
+
+	output.socketAddress.sin_addr.s_addr = output.Ip;
+	output.socketAddress.sin_family = DEFAULT_DOMAIN;
+	output.socketAddress.sin_port = port;
+
+	output.socketLength = sizeof(output.socketAddress);
+
+	return output;
+}

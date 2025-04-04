@@ -95,5 +95,16 @@
 
 	typedef struct socketParams socketParams_t;
 
+	/**
+	 * @brief Generates a parameter struct
+	 * 
+	 * @param localIp uint8_t array (length 4
+	 * @param remoteIp uint8_t array (length 4
+	 * @param port uint16_t port
+	 * @param ConnType Connection type, either Sender or Receiver
+	 * @return socketParams_t 
+	 */
+	socketParams_t generateParams(uint8_t Ip[4], uint16_t port, ConnType_t ConnType);
+
 	#define NET_DEFAULTS_HEADER
 #endif
