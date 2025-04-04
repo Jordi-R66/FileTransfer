@@ -1,8 +1,9 @@
 #include "../headers/sender.h"
+
 #ifdef UNIX
-	#include "../headers/unix/linuxRecv.h"
+	#include "../headers/unix/linuxSend.h"
 #elif defined(WIN)
-	#include "../headers/win/windowsRecv.h"
+	#include "../headers/win/windowsSend.h"
 #endif
 
 void sender(uint8_t local[4], uint16_t port, string* filename) {
