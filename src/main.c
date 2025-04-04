@@ -1,7 +1,6 @@
 #include "headers/common.h"
 #include "headers/receiver.h"
 #include "headers/sender.h"
-#include "headers/endianness.h"
 
 struct RunInfo {
 	ConnType_t type;
