@@ -21,8 +21,4 @@ void createUnixSocket(socketParams_t* socketParams) {
 	}
 }
 
-void closeUnixSocket(socketParams_t* socketParams) {
-	close(socketParams->fd);
-}
-
 #endif
