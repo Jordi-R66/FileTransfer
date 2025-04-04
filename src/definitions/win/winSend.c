@@ -18,7 +18,7 @@ void winSend(uint8_t local[4], uint16_t port, string* filename) {
 	socketParams.isMain = true;
 
 	printf("Creating socket\n");
-	createSocket(&socketParams);
+	createWinSocket(&socketParams);
 
 	printf("Binding socket\n");
 	int bind_ret_code = bind(socketParams.fd, (const sockAddr*)(&socketParams.socketAddress), socketParams.socketLength);
@@ -105,7 +105,7 @@ void winSend(uint8_t local[4], uint16_t port, string* filename) {
 
 	fclose(fp);
 
-	closeSocket(&remoteParams);
-	closeSocket(&socketParams);
+	closeWinSocket(&remoteParams);
+	closeWinSocket(&socketParams);
 }
 #endif

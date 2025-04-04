@@ -1,8 +1,7 @@
 #include "../headers/sender.h"
-#include "../headers/customSockets.h"
 
 void sender(uint8_t local[4], uint16_t port, string* filename) {
-	uint8_t buffer[BUFFER_SIZE];
+	/*uint8_t buffer[BUFFER_SIZE];
 	memset(buffer, 0, BUFFER_SIZE);
 
 	printf("Preparing configuration as Sender\n");
@@ -88,5 +87,5 @@ void sender(uint8_t local[4], uint16_t port, string* filename) {
 	fclose(fp);
 
 	closeSocket(&remoteParams);
-	closeSocket(&socketParams);
+	closeSocket(&socketParams);*/
 }
