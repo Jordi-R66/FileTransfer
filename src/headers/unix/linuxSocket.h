@@ -4,9 +4,8 @@
 	#ifdef __linux__
 		#define UNIX_SOCKET_HEADER
 
-		#include "common.h"
+		#include "../common.h"
 
 		void createUnixSocket(socketParams_t* socketParams);
-		void closeUnixSocket(socketParams_t* socketParams);
 	#endif
 #endif
