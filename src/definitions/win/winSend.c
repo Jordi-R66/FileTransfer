@@ -24,12 +24,22 @@ void winSend(uint8_t local[4], uint16_t port, string* filename) {
 	bindSocket(&socketParams);
 
 	printf("Socket bound to %u.%u.%u.%u:%hu, waiting for connections...\n", local[0], local[1], local[2], local[3], socketParams.port);
-	int ret_listen = listenToConnections(&socketParams, &remoteParams);
+	int ret_listen = listen(socketParams.fd, 1);
 
 	if (ret_listen < 0) {
-		// Pas besoin de faire un fprintf : la fonction le fait déjà
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "Error happened on listening to incoming connections\n");
+		closeWinSocket(&socketParams);
 	}
+
+	int connected_fd = accept(socketParams.fd, (sockAddr*)&socketParams.socketAddress, &socketParams.socketLength);
+
+	if (connected_fd < 0) {
+		fprintf(stderr, "Error happened on accepting incoming connections\n");
+		closeWinSocket(&socketParams);
+	}
+
+	remoteParams.fd = connected_fd;
+	remoteParams.isMain = false;
 
 	printf("Connection established\n");
 	ssize_t receivedFromRemote = recv(remoteParams.fd, (char*)buffer, BUFFER_SIZE, 0);
