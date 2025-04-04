@@ -21,7 +21,13 @@ void winSend(uint8_t local[4], uint16_t port, string* filename) {
 	createSocket(&socketParams);
 
 	printf("Binding socket\n");
-	bindSocket(&socketParams);
+	int bind_ret_code = bind(socketParams.fd, (const sockAddr*)(&socketParams.socketAddress), socketParams.socketLength);
+
+	if (bind_ret_code < 0) {
+		fprintf(stderr, "Couldn't bind socket\n");
+		closeWinSocket(&socketParams);
+		exit(EXIT_FAILURE);
+	}
 
 	printf("Socket bound to %u.%u.%u.%u:%hu, waiting for connections...\n", local[0], local[1], local[2], local[3], socketParams.port);
 	int ret_listen = listen(socketParams.fd, 1);
