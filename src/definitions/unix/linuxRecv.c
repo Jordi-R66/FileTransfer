@@ -1,5 +1,7 @@
 #include "../../headers/unix/linuxRecv.h"
 
+#ifdef LINUX_RECV_H
+
 int8_t linuxRecv(uint8_t remote[4], uint16_t port, string* filename) {
 	Endianness_t sysEndian = getEndian();
 	uint8_t buffer[BUFFER_SIZE];
@@ -78,3 +80,5 @@ int8_t linuxRecv(uint8_t remote[4], uint16_t port, string* filename) {
 
 	return 0;
 }
+
+#endif
