@@ -1,4 +1,9 @@
 #include "../headers/sender.h"
+#ifdef UNIX
+	#include "../headers/unix/linuxRecv.h"
+#elif defined(WIN)
+	#include "../headers/win/windowsRecv.h"
+#endif
 
 void sender(uint8_t local[4], uint16_t port, string* filename) {
 	/*uint8_t buffer[BUFFER_SIZE];
@@ -88,4 +93,10 @@ void sender(uint8_t local[4], uint16_t port, string* filename) {
 
 	closeSocket(&remoteParams);
 	closeSocket(&socketParams);*/
+
+	#if defined(UNIX)
+		linuxSend(local, port, filename);
+	#elif defined(WIN)
+		winSend(local, port, filename);
+	#endif
 }
