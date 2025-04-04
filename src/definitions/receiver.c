@@ -1,8 +1,6 @@
 #include "../headers/receiver.h"
 #include "../headers/customSockets.h"
 
-#include "../headers/endianness.h"
-
 int8_t receiver(uint8_t remote[4], uint16_t port, string* filename) {
 	Endianness_t sysEndian = getEndian();
 	uint8_t buffer[BUFFER_SIZE];

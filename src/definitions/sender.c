@@ -1,8 +1,6 @@
 #include "../headers/sender.h"
 #include "../headers/customSockets.h"
 
-#include "../headers/endianness.h"
-
 void sender(uint8_t local[4], uint16_t port, string* filename) {
 	uint8_t buffer[BUFFER_SIZE];
 	memset(buffer, 0, BUFFER_SIZE);
