@@ -85,3 +85,8 @@ Dans cet exemple :
 - La fonction `bind()` est utilisée pour lier le socket à l'adresse IP locale spécifiée avant d'appeler `connect()`.
 
 Assurez-vous que l'adresse IP locale que vous spécifiez est bien configurée sur votre machine et qu'elle est disponible pour être utilisée par votre application.
+
+---
+
+## Liens utiles
+- [Unix Stack Exchange - Force programs to bind to an interface, not IP address](https://unix.stackexchange.com/questions/648718/force-programs-bind-to-an-interface-not-ip-address)
