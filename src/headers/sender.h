@@ -1,3 +1,4 @@
+#pragma once
 #include "common.h"
 
 #ifndef SENDR_H
