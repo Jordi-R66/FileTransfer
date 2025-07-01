@@ -92,7 +92,7 @@ void linuxSend(uint8_t local[4], uint16_t port, string* filename) {
 		swapEndianness(&filesize.value, sizeof(filesize.value));
 	}
 
-	printf("The \"%s\" file weighs %llu bytes\n", *filename, filesize.value);
+	printf("The \"%s\" file weighs %lu bytes\n", *filename, filesize.value);
 	send(remoteParams.fd, (char*)&filesize, sizeof(filesize), 0);
 
 	sysSleep(2);

@@ -53,7 +53,7 @@ int8_t linuxRecv(uint8_t remote[4], uint16_t port, string* filename) {
 		swapEndianness(&fileSize.value, 64/8);
 	}
 
-	fprintf(stdout, "Ready to receive a %llu bytes.\n", fileSize.value);
+	fprintf(stdout, "Ready to receive a %lu bytes.\n", fileSize.value);
 
 	FILE* fp = fopen(*filename, "w");
 
