@@ -84,7 +84,6 @@ void linuxSend(uint8_t local[4], uint16_t port, string* filename) {
 		buffer[i] = 0;
 	}
 
-	printf("Preparing to send\n");
 	FILE* fp = fopen(*filename, "r");
 	Value64_t filesize = { getFileSize(fp), 64, sysEndianness };
 
