@@ -23,12 +23,14 @@ void linuxSend(uint8_t local[4], uint16_t port, string* filename) {
 
 		if (socket_fd == -1) {
 			fprintf(stderr, "Socket creation failed\n");
+			perror("Details ");
 			exit(EXIT_FAILURE);
 		}
 
 		socketParams.fd = socket_fd;
 	} else {
 		fprintf(stderr, "Invalid connection type\n");
+		perror("Details ");
 		exit(EXIT_FAILURE);
 	}
 
@@ -37,6 +39,8 @@ void linuxSend(uint8_t local[4], uint16_t port, string* filename) {
 
 	if (bind_ret_code < 0) {
 		fprintf(stderr, "Couldn't bind socket\n");
+		perror("Details ");
+		shutdown(socketParams.fd, SHUT_RDWR);
 		close(socketParams.fd);
 		exit(EXIT_FAILURE);
 	}
@@ -46,6 +50,7 @@ void linuxSend(uint8_t local[4], uint16_t port, string* filename) {
 
 	if (ret_listen < 0) {
 		fprintf(stderr, "Error happened on listening to incoming connections\n");
+		perror("Details ");
 		close(socketParams.fd);
 	}
 
@@ -64,6 +69,7 @@ void linuxSend(uint8_t local[4], uint16_t port, string* filename) {
 
 	if (receivedFromRemote < (ssize_t)sizeof(Value16_t)) {
 		fprintf(stderr, "Failed to receive initiation bytes from remote host\n");
+		perror("Details ");
 		exit(EXIT_FAILURE);
 	} else {
 		Value16_t recvInit = *(Value16_t*)buffer;
