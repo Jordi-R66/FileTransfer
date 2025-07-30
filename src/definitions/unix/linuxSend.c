@@ -120,6 +120,9 @@ void linuxSend(uint8_t local[4], uint16_t port, string* filename) {
 	printf("End of transmission!");
 	send(remoteParams.fd, &eot, 1, 0);
 
+	shutdown(remoteParams.fd, SHUT_RDWR);
+	shutdown(socketParams.fd, SHUT_RDWR);
+
 	fclose(fp);
 
 	close(remoteParams.fd);

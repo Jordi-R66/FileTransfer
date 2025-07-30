@@ -75,6 +75,8 @@ int8_t linuxRecv(uint8_t remote[4], uint16_t port, string* filename) {
 		exit(EXIT_FAILURE);
 	}
 
+	shutdown(socketParams.fd, SHUT_RDWR);
+
 	close(socketParams.fd);
 	fclose(fp);
 
