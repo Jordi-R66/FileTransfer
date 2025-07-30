@@ -62,7 +62,7 @@ void linuxSend(uint8_t local[4], uint16_t port, string* filename) {
 	printf("Connection established\n");
 	ssize_t receivedFromRemote = recv(remoteParams.fd, (char*)buffer, BUFFER_SIZE, 0);
 
-	if (receivedFromRemote < sizeof(Value16_t)) {
+	if (receivedFromRemote < (ssize_t)sizeof(Value16_t)) {
 		fprintf(stderr, "Failed to receive initiation bytes from remote host\n");
 		exit(EXIT_FAILURE);
 	} else {
