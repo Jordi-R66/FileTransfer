@@ -11,8 +11,6 @@ size_t getFileSize(FILE* fp) {
 void sysSleep(int seconds) {
 	#ifdef UNIX
 		sleep(seconds);
-	#elif defined(WIN)
-		Sleep(seconds * 1000);
 	#endif
 }
 
