@@ -17,6 +17,22 @@
             "intelliSenseMode": "linux-gcc-x64"
         },
         {
+            "name": "Linux32",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                ""
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "compilerArgs": [
+                "-m32"
+            ],
+            "intelliSenseMode": "linux-gcc-x86"
+        },
+        {
             "name": "Win64 From Windows",
             "includePath": [
                 "${workspaceFolder}/**"
