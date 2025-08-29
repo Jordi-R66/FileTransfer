@@ -6,6 +6,8 @@
 	#include <sys/types.h>
 	#include <arpa/inet.h>
 	#include <unistd.h>
+
+	#define SOCKET_TYPE int
 #elif defined(_WIN32)
 	#include <winsock2.h>
 	#include <ws2tcpip.h>
@@ -14,6 +16,10 @@
 	#define SHUT_RD SD_RECEIVE
     #define SHUT_WR SD_SEND
     #define SHUT_RDWR SD_BOTH
+
+	#define SOCKET_TYPE SOCKET
 #else
 	#error 'Unsupported OS'
 #endif
+
+typedef SOCKET socket_t;
