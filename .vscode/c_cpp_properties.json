@@ -57,6 +57,21 @@
             "intelliSenseMode": "windows-gcc-x64",
             "cStandard": "c17",
             "cppStandard": "c++17"
+        },
+        {
+            "name": "Windows",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:/Program Files/mingw64/bin/gcc.exe",
+            "intelliSenseMode": "windows-gcc-x64",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
         }
     ],
     "version": 4
