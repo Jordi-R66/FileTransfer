@@ -9,7 +9,9 @@
 #include "endianness.h"
 
 #ifdef __linux__
-#define UNIX
+	#define UNIX
+#elif defined(_WIN32)
+	#define WIN
 #else
 	#define TargetError
 	#define Error
