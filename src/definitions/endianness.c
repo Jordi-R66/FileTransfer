@@ -1,7 +1,6 @@
 #include "../headers/endianness.h"
 
 #include <stdint.h>
-#include <stddef.h>
 
 #ifdef ENDIANNESS_HEADER
 
