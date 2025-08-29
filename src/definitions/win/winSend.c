@@ -25,7 +25,8 @@ void winSend(uint8_t local[4], uint16_t port, string* filename) {
 
 	printf("Creating socket\n");
 
-	SOCKET sock, connected;
+	SOCKET sock;
+	int connected;
 
 	if (socketParams.connType == Sender) {
 		sock = socket(DEFAULT_DOMAIN, SOCK_STREAM, IPPROTO_TCP);
@@ -54,7 +55,7 @@ void winSend(uint8_t local[4], uint16_t port, string* filename) {
 		exit(EXIT_FAILURE);
 	}
 
-	printf("Socket bound to %u.%u.%u.%u:" PRIu16 ", waiting for connections...\n", local[0], local[1], local[2], local[3], socketParams.port);
+	printf("Socket bound to %u.%u.%u.%u:%" PRIu16 ", waiting for connections...\n", local[0], local[1], local[2], local[3], socketParams.port);
 	int ret_listen = listen(socketParams.fd, 1);
 
 	if (ret_listen == SOCKET_ERROR) {
