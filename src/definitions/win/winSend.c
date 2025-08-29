@@ -26,7 +26,7 @@ void winSend(uint8_t local[4], uint16_t port, string* filename) {
 	printf("Creating socket\n");
 
 	SOCKET sock;
-	int connected;
+	SOCKET connected;
 
 	if (socketParams.connType == Sender) {
 		sock = socket(DEFAULT_DOMAIN, SOCK_STREAM, IPPROTO_TCP);
@@ -68,7 +68,7 @@ void winSend(uint8_t local[4], uint16_t port, string* filename) {
 
 	connected = accept(socketParams.fd, (sockAddr*)&socketParams.socketAddress, &socketParams.socketLength);
 
-	if (connected == SOCKET_ERROR) {
+	if (connected == INVALID_SOCKET) {
 		fprintf(stderr, "Error happened on accepting incoming connections\nDetails: %d\n", WSAGetLastError());
 		shutdown(socketParams.fd, SHUT_RDWR);
 		closesocket(socketParams.fd);
