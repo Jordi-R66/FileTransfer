@@ -75,7 +75,7 @@ typedef struct Value32 Value32_t;
 typedef struct Value16 Value16_t;
 
 struct socketParams {
-	int fd;
+	socket_t fd;
 	bool isMain;
 
 	uint32_t Ip;
