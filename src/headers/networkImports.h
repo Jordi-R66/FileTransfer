@@ -22,4 +22,4 @@
 	#error 'Unsupported OS'
 #endif
 
-typedef SOCKET socket_t;
+typedef SOCKET_TYPE socket_t;
