@@ -89,10 +89,19 @@ struct socketParams {
 
 typedef struct socketParams socketParams_t;
 
-#define V64_SIZE sizeof(Value64_t);
-#define V32_SIZE sizeof(Value32_t);
-#define V16_SIZE sizeof(Value16_t);
-#define SOCKPARAMS_SIZE sizeof(socketParams_t);
+struct FileData {
+	uint8_t FileID;
+	Value64_t PacketNumber;
+	uint8_t buffer[BUFFER_SIZE];
+};
+
+typedef struct FileData fileData_t;
+
+#define V64_SIZE sizeof(Value64_t)
+#define V32_SIZE sizeof(Value32_t)
+#define V16_SIZE sizeof(Value16_t)
+#define SOCKPARAMS_SIZE sizeof(socketParams_t)
+#define FILEDATA_SIZE sizeof(fileData_t)
 
 #pragma pack()
 
