@@ -12,7 +12,7 @@
             "cStandard": "c17",
             "cppStandard": "c++17",
             "compilerArgs": [
-                "-m64"
+                "-m64", "-fshort-enums"
             ],
             "intelliSenseMode": "linux-gcc-x64"
         },
@@ -28,7 +28,7 @@
             "cStandard": "c17",
             "cppStandard": "c++17",
             "compilerArgs": [
-                "-m32"
+                "-m32", "-fshort-enums"
             ],
             "intelliSenseMode": "linux-gcc-x86"
         },
@@ -38,7 +38,7 @@
                 "${workspaceFolder}/**"
             ],
             "compilerArgs": [
-                "-m64"
+                "-m64", "-fshort-enums"
             ],
             "compilerPath": "C:/Program Files/mingw64/bin/gcc.exe",
             "intelliSenseMode": "windows-gcc-x64",
@@ -51,7 +51,7 @@
                 "${workspaceFolder}/**"
             ],
             "compilerArgs": [
-                "-m64"
+                "-m64", "-fshort-enums"
             ],
             "compilerPath": "/usr/bin/x86_64-w64-mingw32-gcc",
             "intelliSenseMode": "windows-gcc-x64",
