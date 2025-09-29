@@ -44,6 +44,7 @@ void sysSleep(int seconds);
 typedef struct sockaddr_in sockAddrIn;
 typedef struct sockaddr sockAddr;
 
+#pragma pack(1)
 enum ConnType {
 	Sender = 0,
 	Receiver = 1
@@ -62,7 +63,6 @@ struct Value32 {
 	uint8_t bytes;
 	uint8_t endian;
 };
-
 
 struct Value16 {
 	uint16_t value;
@@ -88,6 +88,13 @@ struct socketParams {
 };
 
 typedef struct socketParams socketParams_t;
+
+#define V64_SIZE sizeof(Value64_t);
+#define V32_SIZE sizeof(Value32_t);
+#define V16_SIZE sizeof(Value16_t);
+#define SOCKPARAMS_SIZE sizeof(socketParams_t);
+
+#pragma pack()
 
 /**
  * @brief Generates a parameter struct
