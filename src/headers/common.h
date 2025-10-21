@@ -1,5 +1,16 @@
 #pragma once
 
+#ifdef __linux__
+	#define UNIX
+	#define _GNU_SOURCE
+#elif defined(_WIN32)
+	#define WIN
+#else
+	#define TargetError
+	#define Error
+	#error "Target OS not supported"
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -10,15 +21,14 @@
 #include "networkImports.h"
 #include "endianness.h"
 
-#ifdef __linux__
-	#define UNIX
-#elif defined(_WIN32)
-	#define WIN
+#ifdef UNIX
+	#include <sched.h>
+	#include <unistd.h>
 #else
-	#define TargetError
-	#define Error
-	#error "Target OS not supported"
+	// Do nothing
 #endif
+
+uint16_t getCores(void);
 
 #if defined __STDC_VERSION__ && __STDC_VERSION__ > 201710L
 	/* bool, true and false are keywords.  */

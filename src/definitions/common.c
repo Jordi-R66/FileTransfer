@@ -1,5 +1,24 @@
 #include "../headers/common.h"
 
+#ifdef UNIX
+uint16_t getCores(void) {
+	uint16_t nCores = 1;
+
+	#ifdef UNIX
+		pid_t PID = getpid();
+		cpu_set_t set;
+
+		CPU_ZERO(&set);
+
+		int err_code = sched_getaffinity(PID, sizeof(set), &set);
+
+		nCores = err_code < 0 ? 1 : CPU_COUNT(&set);
+	#endif
+
+	return nCores - 1;
+}
+#endif
+
 size_t getFileSize(FILE* fp) {
 	fseek(fp, 0, SEEK_END);
 	size_t filesize = ftell(fp);
