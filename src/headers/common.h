@@ -17,6 +17,7 @@
 #include <string.h>
 #include <errno.h>
 #include <inttypes.h>
+#include <pthread.h>
 
 #include "networkImports.h"
 #include "endianness.h"
