@@ -29,6 +29,11 @@
 	// Do nothing
 #endif
 
+/**
+ * @brief Get the number of cores we can add to the program for threading
+ * 
+ * @return `uint16_t` the number if cores we can use (current one not included)
+ */
 uint16_t getCores(void);
 
 #if defined __STDC_VERSION__ && __STDC_VERSION__ > 201710L

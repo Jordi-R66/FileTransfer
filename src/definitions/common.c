@@ -1,6 +1,5 @@
 #include "../headers/common.h"
 
-#ifdef UNIX
 uint16_t getCores(void) {
 	uint16_t nCores = 1;
 
@@ -17,7 +16,6 @@ uint16_t getCores(void) {
 
 	return nCores - 1;
 }
-#endif
 
 size_t getFileSize(FILE* fp) {
 	fseek(fp, 0, SEEK_END);
